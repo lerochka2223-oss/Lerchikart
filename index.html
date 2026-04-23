@@ -1,85 +1,773 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Neurocreator</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Лера — нейрокреатор</title>
+  <style>
+    :root {
+      --coral: #7d2826;
+      --candle: #efe9d7;
+      --leaf: #898861;
+      --juniper: #343723;
+      --juniper-2: #222617;
+      --line: rgba(239, 233, 215, 0.14);
+      --card: rgba(255, 255, 255, 0.05);
+      --card-2: rgba(255, 255, 255, 0.08);
+    }
 
-<style>
-body {
-  margin: 0;
-  font-family: Georgia, serif;
-  background: #343723;
-  color: #EFE9D7;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-.container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 40px;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-h1 {
-  font-size: 56px;
-}
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: linear-gradient(180deg, var(--juniper) 0%, var(--juniper-2) 45%, var(--juniper) 100%);
+      color: var(--candle);
+    }
 
-.btn {
-  background: #7D2826;
-  padding: 12px 24px;
-  border-radius: 30px;
-  color: #EFE9D7;
-  text-decoration: none;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-.section {
-  margin-top: 80px;
-}
+    .container {
+      width: min(1200px, calc(100% - 32px));
+      margin: 0 auto;
+    }
 
-.card {
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  border-radius: 20px;
-  margin-bottom: 20px;
-}
-</style>
+    .section {
+      padding: 34px 0;
+    }
+
+    .section-title-tag {
+      font-size: 12px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--leaf);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 5vw, 58px);
+      line-height: 1.02;
+      margin: 0;
+    }
+
+    .muted {
+      color: rgba(239, 233, 215, 0.78);
+    }
+
+    .hero {
+      padding: 22px 0 28px;
+    }
+
+    .hero-box {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+    }
+
+    .hero-left,
+    .hero-right {
+      padding: 44px;
+    }
+
+    .hero-label {
+      display: inline-block;
+      padding: 11px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(239, 233, 215, 0.34);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 12px;
+      color: var(--candle);
+      margin-bottom: 26px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(42px, 7vw, 90px);
+      line-height: 0.94;
+      letter-spacing: -0.03em;
+      max-width: 780px;
+    }
+
+    .accent {
+      color: var(--coral);
+    }
+
+    .hero-text {
+      max-width: 650px;
+      font-size: 18px;
+      line-height: 1.8;
+      margin-top: 24px;
+      color: rgba(239, 233, 215, 0.84);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-size: 15px;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--coral);
+      color: var(--candle);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(239, 233, 215, 0.28);
+      color: var(--candle);
+      background: transparent;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .hero-right {
+      position: relative;
+      min-height: 100%;
+    }
+
+    .glow-a,
+    .glow-b {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(56px);
+      opacity: 0.55;
+    }
+
+    .glow-a {
+      width: 180px;
+      height: 180px;
+      background: rgba(125, 40, 38, 0.85);
+      top: 40px;
+      left: 20px;
+    }
+
+    .glow-b {
+      width: 220px;
+      height: 220px;
+      background: rgba(137, 136, 97, 0.75);
+      right: 18px;
+      bottom: 40px;
+    }
+
+    .hero-cards {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      height: 100%;
+    }
+
+    .mini-card,
+    .wide-card,
+    .card,
+    .case-card,
+    .service-card,
+    .contact-card,
+    .video-card {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 24px;
+    }
+
+    .mini-card {
+      min-height: 190px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .mini-card .top,
+    .wide-card .top {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(239, 233, 215, 0.62);
+    }
+
+    .mini-card .value {
+      font-size: 30px;
+      line-height: 1.1;
+      color: var(--candle);
+    }
+
+    .wide-card {
+      grid-column: 1 / -1;
+      padding: 24px;
+    }
+
+    .wide-card p {
+      margin: 14px 0 0;
+      font-size: 22px;
+      line-height: 1.6;
+      color: var(--candle);
+    }
+
+    .about-grid,
+    .offer-grid,
+    .contact-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .about-grid {
+      grid-template-columns: 0.9fr 1.1fr;
+    }
+
+    .card {
+      padding: 32px;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.8;
+      color: rgba(239, 233, 215, 0.84);
+    }
+
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .case-card {
+      padding: 28px;
+      background: rgba(255,255,255,0.045);
+    }
+
+    .case-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--coral);
+      color: var(--candle);
+      font-size: 18px;
+      margin-bottom: 18px;
+    }
+
+    .case-card h3 {
+      margin: 0 0 14px;
+      font-size: 30px;
+      line-height: 1.1;
+    }
+
+    .case-card p {
+      margin: 0 0 16px;
+      color: rgba(239, 233, 215, 0.78);
+      line-height: 1.75;
+      font-size: 17px;
+    }
+
+    .case-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(239,233,215,0.12);
+      color: rgba(239, 233, 215, 0.8);
+      font-size: 13px;
+    }
+
+    .offer-box {
+      border-radius: 30px;
+      padding: 34px;
+      background: rgba(137, 136, 97, 0.12);
+      border: 1px solid var(--line);
+    }
+
+    .offer-grid {
+      grid-template-columns: 0.85fr 1.15fr;
+      align-items: start;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .service-card {
+      padding: 18px;
+      color: var(--candle);
+      line-height: 1.5;
+      background: rgba(0,0,0,0.16);
+    }
+
+    .portfolio-intro {
+      max-width: 820px;
+      font-size: 18px;
+      line-height: 1.8;
+      color: rgba(239, 233, 215, 0.8);
+      margin-top: 16px;
+    }
+
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .video-card {
+      overflow: hidden;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .video-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #10120d;
+    }
+
+    .video-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .video-body {
+      padding: 22px;
+    }
+
+    .video-body h3 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    .video-body p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.75;
+      color: rgba(239, 233, 215, 0.76);
+    }
+
+    .contact-wrap {
+      border-radius: 32px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+
+    .contact-grid {
+      grid-template-columns: 1.05fr 0.95fr;
+    }
+
+    .contact-left,
+    .contact-right {
+      padding: 34px;
+    }
+
+    .contact-left {
+      background: var(--coral);
+    }
+
+    .contact-right {
+      background: rgba(0,0,0,0.14);
+    }
+
+    .contact-left p {
+      margin: 16px 0 0;
+      font-size: 18px;
+      line-height: 1.8;
+      color: rgba(239,233,215,0.88);
+    }
+
+    .contact-card {
+      padding: 18px 20px;
+      margin-bottom: 12px;
+    }
+
+    .contact-card strong {
+      display: block;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(239,233,215,0.58);
+      margin-bottom: 8px;
+    }
+
+    .contact-card span {
+      font-size: 20px;
+      color: var(--candle);
+    }
+
+    .footer-note {
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(239,233,215,0.52);
+      margin-top: 16px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .about-grid,
+      .offer-grid,
+      .contact-grid,
+      .cases-grid,
+      .videos-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-left,
+      .hero-right,
+      .card,
+      .offer-box,
+      .contact-left,
+      .contact-right,
+      .case-card {
+        padding: 24px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(1200px, calc(100% - 20px));
+      }
+
+      .hero-left,
+      .hero-right,
+      .card,
+      .offer-box,
+      .contact-left,
+      .contact-right,
+      .case-card,
+      .wide-card,
+      .video-body {
+        padding: 20px;
+      }
+
+      .hero-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .wide-card {
+        grid-column: auto;
+      }
+
+      .mini-card {
+        min-height: 150px;
+      }
+
+      .video-frame {
+        aspect-ratio: 9 / 16;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-box">
+        <div class="hero-grid">
+          <div class="hero-left">
+            <div class="hero-label">Нейрокреатор / AI Visual Director</div>
+            <h1>
+              Создаю <span class="accent">рекламные визуальные миры</span><br />
+              для брендов, продуктов и digital-кампаний
+            </h1>
+            <div class="hero-text">
+              Я создаю AI-видео и визуальные концепции с рекламным мышлением: не просто генерирую красивую картинку,
+              а выстраиваю идею, атмосферу, визуальную драматургию и подачу, которая выглядит как полноценная реклама.
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#portfolio">Смотреть портфолио</a>
+              <a class="btn btn-secondary" href="#contact">Связаться</a>
+            </div>
+          </div>
 
-<div class="container">
+          <div class="hero-right">
+            <div class="glow-a"></div>
+            <div class="glow-b"></div>
+            <div class="hero-cards">
+              <div class="mini-card">
+                <div class="top">Форматы</div>
+                <div class="value">Reels<br />Ads<br />Key visuals</div>
+              </div>
+              <div class="mini-card">
+                <div class="top">Ниши</div>
+                <div class="value">Beauty<br />Fashion<br />Product / Brand</div>
+              </div>
+              <div class="wide-card">
+                <div class="top">Подход</div>
+                <p>Не просто AI-контент, а визуальная концепция, которая выглядит как реклама, а не как случайная генерация.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<h1>Создаю визуальные миры для брендов</h1>
-<p>AI видео, реклама, визуальные концепции</p>
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="card">
+          <div class="section-title-tag">Обо мне</div>
+          <h2 class="section-title">Помогаю брендам выглядеть <span class="accent">смело, дорого и современно</span></h2>
+        </div>
+        <div class="card">
+          <p>
+            Я нейрокреатор и AI visual director, создаю рекламные видео и визуальные концепции для брендов.
+            Работаю не как генератор картинок, а как режиссёр: продумываю идею, визуальный язык, настроение и то,
+            как ролик будет восприниматься зрителем.
+          </p>
+          <p style="margin-top:16px;">
+            Создаю контент, который выглядит как полноценная реклама, а не как случайная AI-генерация.
+            Мне интересны проекты, где важны эстетика, идея и сильная подача: beauty, fashion, аксессуары,
+            предметный контент и визуальные кампании для брендов.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<a class="btn">Смотреть портфолио</a>
+  <section class="section" id="cases">
+    <div class="container">
+      <div class="section-title-tag">Кейсы</div>
+      <h2 class="section-title">Избранные проекты</h2>
 
-<div class="section">
-<h2>Обо мне</h2>
-<p>Напиши тут про себя</p>
-</div>
+      <div class="cases-grid">
+        <article class="case-card">
+          <div class="case-number">01</div>
+          <h3>Dey Design</h3>
+          <p>
+            Имиджевый AI-ролик для бренда сумок. Концепт построен на минимализме и визуальной драматургии:
+            объект постепенно раскрывается через пространство, свет и движение, создавая ощущение глубины,
+            премиальности и характера.
+          </p>
+          <p>
+            Ролик работает не как простая демонстрация продукта, а как визуальная история,
+            в которой сумка становится главным эмоциональным центром кадра.
+          </p>
+          <div class="case-meta">
+            <div class="pill">Идея</div>
+            <div class="pill">Сценарий</div>
+            <div class="pill">Визуальная режиссура</div>
+            <div class="pill">Генерация</div>
+            <div class="pill">Монтаж</div>
+          </div>
+        </article>
 
-<div class="section">
-<h2>Кейсы</h2>
+        <article class="case-card">
+          <div class="case-number">02</div>
+          <h3>Миралу</h3>
+          <p>
+            Полная визуальная упаковка бренда украшений: серия коротких видео, формирующих единый образ бренда.
+            В основе — мягкая эстетика, чувственность, деликатная подача деталей и атмосфера, которая помогает
+            не просто показать продукт, а передать ощущение от него.
+          </p>
+          <p>
+            Контент выстроен как система: каждое видео работает как самостоятельный визуальный элемент,
+            а вместе ролики создают цельное восприятие бренда и его настроения.
+          </p>
+          <div class="case-meta">
+            <div class="pill">Упаковка бренда</div>
+            <div class="pill">Серия Reels</div>
+            <div class="pill">Визуальная концепция</div>
+            <div class="pill">Продакшн контента</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-<div class="card">Кейс 1</div>
-<div class="card">Кейс 2</div>
+  <section class="section">
+    <div class="container">
+      <div class="offer-box">
+        <div class="offer-grid">
+          <div>
+            <div class="section-title-tag" style="color: var(--coral);">Что я делаю</div>
+            <h2 class="section-title">Для брендов, которым нужен не шаблон, а характер</h2>
+          </div>
+          <div class="services-grid">
+            <div class="service-card">AI-реклама для брендов и продуктов</div>
+            <div class="service-card">Короткие видео для Reels / Shorts / ads</div>
+            <div class="service-card">Имиджевые ролики и визуальные концепции</div>
+            <div class="service-card">Сториборды, сценарии и креативные идеи</div>
+            <div class="service-card">Нейрофото и fashion / beauty visuals</div>
+            <div class="service-card">Упаковка визуального образа бренда</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-</div>
+  <section class="section" id="portfolio">
+    <div class="container">
+      <div class="section-title-tag">Портфолио</div>
+      <h2 class="section-title">Видео и визуальные работы</h2>
+      <div class="portfolio-intro">
+        Ниже — встроенные видео с твоими ключевыми работами. Потом ты сможешь менять их местами, удалять,
+        добавлять новые проекты и переписывать описания прямо в файле <strong>index.html</strong>.
+      </div>
 
-<div class="section">
-<h2>Портфолио</h2>
+      <div class="videos-grid">
+        <article class="video-card">
+          <div class="video-frame">
+            <iframe src="https://rutube.ru/play/embed/4cd918a012f70f5846342129da19a652/" allowfullscreen></iframe>
+          </div>
+          <div class="video-body">
+            <h3>Dey Design — имиджевый AI-ролик для бренда сумок</h3>
+            <p>Концептуальный ролик с акцентом на пространство, свет, фактуру и премиальное ощущение продукта.</p>
+          </div>
+        </article>
 
-<div class="card">Видео 1</div>
-<div class="card">Видео 2</div>
+        <article class="video-card">
+          <div class="video-frame">
+            <iframe src="https://rutube.ru/play/embed/d402a1df8c182081ea63f1127961b99b/" allowfullscreen></iframe>
+          </div>
+          <div class="video-body">
+            <h3>Миралу — AI-визуал для бренда украшений</h3>
+            <p>Короткий fashion-oriented ролик с акцентом на атмосферу, деликатность и эмоциональную подачу продукта.</p>
+          </div>
+        </article>
 
-</div>
+        <article class="video-card">
+          <div class="video-frame">
+            <iframe src="https://rutube.ru/play/embed/0ab3d7e10c955df4e7a4efa998f07b03/" allowfullscreen></iframe>
+          </div>
+          <div class="video-body">
+            <h3>Миралу — серия брендовых коротких видео</h3>
+            <p>Один из роликов из общей визуальной системы бренда, где каждое видео работает как часть единой упаковки.</p>
+          </div>
+        </article>
 
-<div class="section">
-<h2>Контакты</h2>
-<p>@yourname</p>
-</div>
+        <article class="video-card">
+          <div class="video-frame">
+            <iframe src="https://rutube.ru/play/embed/cb1e187c72b6d2c707158d5568bee69a/" allowfullscreen></iframe>
+          </div>
+          <div class="video-body">
+            <h3>Миралу — визуальная подача украшений</h3>
+            <p>Ролик, построенный на мягком темпе, фокусе на деталях и эстетике, которая усиливает восприятие бренда.</p>
+          </div>
+        </article>
 
-</div>
+        <article class="video-card">
+          <div class="video-frame">
+            <iframe src="https://rutube.ru/play/embed/9ebea5526bd086fd0c55f0eac66635ed/" allowfullscreen></iframe>
+          </div>
+          <div class="video-body">
+            <h3>Миралу — короткий AI Reels для бренда</h3>
+            <p>Контент, работающий на узнаваемость бренда через настроение, цвет, ритм и визуальную целостность.</p>
+          </div>
+        </article>
 
+        <article class="video-card">
+          <div class="video-frame">
+            <iframe src="https://rutube.ru/play/embed/3efb1741dcb68f1cef8d7e12d8c8d0d4/" allowfullscreen></iframe>
+          </div>
+          <div class="video-body">
+            <h3>Миралу — atmospheric product visual</h3>
+            <p>Ролик с упором на предметную эстетику, нежность и ощущение визуальной интимности.</p>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <div class="video-frame">
+            <iframe src="https://rutube.ru/play/embed/3b819d8f6f05fa3bf2686a524ee27285/" allowfullscreen></iframe>
+          </div>
+          <div class="video-body">
+            <h3>Миралу — часть серии контента</h3>
+            <p>Ещё один ролик из брендовой системы, в которой важна не единичная генерация, а целостный визуальный язык.</p>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <div class="video-frame">
+            <iframe src="https://rutube.ru/play/embed/51f882638a8729a05727ea74d8f0cad2/" allowfullscreen></iframe>
+          </div>
+          <div class="video-body">
+            <h3>Миралу — финальный ролик из подборки</h3>
+            <p>Видео, усиливающее общую упаковку бренда через стиль, пластичность и акцент на эстетическом впечатлении.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="contact-wrap">
+        <div class="contact-grid">
+          <div class="contact-left">
+            <div class="section-title-tag" style="color: rgba(239,233,215,0.72);">Контакты</div>
+            <h2 class="section-title">Готова к коллаборациям, брендовым кейсам и коммерческим проектам</h2>
+            <p>
+              Сюда можно добавить твои реальные контакты: Telegram, Instagram и email.
+              Если хочешь, я следующим сообщением соберу тебе версию уже с конкретными никами и контактами.
+            </p>
+          </div>
+          <div class="contact-right">
+            <div class="contact-card">
+              <strong>Telegram</strong>
+              <span>@yourname</span>
+            </div>
+            <div class="contact-card">
+              <strong>Instagram</strong>
+              <span>@yourname</span>
+            </div>
+            <div class="contact-card">
+              <strong>Email</strong>
+              <span>hello@yourmail.com</span>
+            </div>
+            <div class="footer-note">
+              Чтобы поменять контакты, просто замени текст внутри этих блоков в файле <strong>index.html</strong>,
+              нажми <strong>Commit changes</strong>, и сайт обновится.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </body>
 </html>
