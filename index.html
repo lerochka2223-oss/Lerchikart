@@ -1,729 +1,186 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Лера — нейрокреатор</title>
-  <style>
-    :root {
-      --bg: #0c0c0c;
-      --bg-soft: #121212;
-      --line: rgba(214, 190, 162, 0.16);
-      --text: #efe3d3;
-      --muted: rgba(239, 227, 211, 0.72);
-      --accent: #d0b292;
-      --accent-2: #8f684d;
-      --card: rgba(255, 255, 255, 0.025);
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      background:
-        radial-gradient(circle at 70% 20%, rgba(208, 178, 146, 0.09), transparent 18%),
-        radial-gradient(circle at 85% 75%, rgba(143, 104, 77, 0.08), transparent 18%),
-        linear-gradient(180deg, #0b0b0b 0%, #101010 100%);
-      color: var(--text);
-      font-family: Georgia, "Times New Roman", serif;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(1400px, calc(100% - 48px));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 28px 0 18px;
-      gap: 20px;
-    }
-
-    .brand {
-      font-size: 15px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text);
-      opacity: 0.95;
-    }
-
-    .nav {
-      display: flex;
-      gap: 42px;
-      flex-wrap: wrap;
-      justify-content: center;
-      font-size: 15px;
-      color: var(--muted);
-    }
-
-    .nav a:hover,
-    .contact-btn:hover,
-    .main-btn:hover,
-    .circle-btn:hover { opacity: 0.88; }
-
-    .contact-btn {
-      border: 1px solid rgba(208, 178, 146, 0.36);
-      border-radius: 999px;
-      padding: 14px 24px;
-      font-size: 15px;
-      color: var(--text);
-      transition: 0.2s ease;
-      white-space: nowrap;
-    }
-
-    .hero {
-      padding: 8px 0 34px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.18fr 0.82fr;
-      gap: 26px;
-      align-items: stretch;
-    }
-
-    .hero-left {
-      padding-top: 16px;
-    }
-
-    .hero-title {
-      margin: 0;
-      font-size: clamp(68px, 8vw, 124px);
-      line-height: 0.92;
-      letter-spacing: -0.05em;
-      max-width: 920px;
-    }
-
-    .hero-title .light { color: var(--text); }
-    .hero-title .accent { color: #9c3523; }
-
-    .hero-sub {
-      max-width: 620px;
-      margin: 28px 0 0;
-      font-size: 21px;
-      line-height: 1.6;
-      color: var(--muted);
-      font-family: Inter, Arial, sans-serif;
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      margin-top: 34px;
-    }
-
-    .main-btn {
-      min-height: 66px;
-      padding: 0 42px;
-      border-radius: 999px;
-      background: var(--accent);
-      color: #171717;
-      font-family: Inter, Arial, sans-serif;
-      font-size: 20px;
-      font-weight: 500;
-      transition: 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .circle-btn {
-      width: 66px;
-      height: 66px;
-      border-radius: 50%;
-      border: 1px solid rgba(208, 178, 146, 0.35);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 34px;
-      color: var(--accent);
-      transition: 0.2s ease;
-    }
-
-    .hero-right {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 18px;
-      min-height: 780px;
-    }
-
-    .visual-card,
-    .info-stack .info-card,
-    .section-box,
-    .case-card,
-    .video-card,
-    .contact-card {
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      background: var(--card);
-      backdrop-filter: blur(10px);
-    }
-
-    .visual-card {
-      overflow: hidden;
-      position: relative;
-      min-height: 100%;
-      background:
-        radial-gradient(circle at 60% 20%, rgba(244, 224, 199, 0.42), transparent 22%),
-        radial-gradient(circle at 30% 65%, rgba(193, 158, 129, 0.22), transparent 28%),
-        linear-gradient(145deg, #231f1b 0%, #3a3028 22%, #998573 55%, #2e2722 78%, #121212 100%);
-    }
-
-    .visual-card::before,
-    .visual-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-
-    .visual-card::before {
-      background:
-        radial-gradient(ellipse at 55% 28%, rgba(255,255,255,0.26), transparent 18%),
-        radial-gradient(ellipse at 50% 55%, rgba(255,245,230,0.15), transparent 20%),
-        linear-gradient(120deg, transparent 10%, rgba(0,0,0,0.18) 48%, transparent 72%);
-      mix-blend-mode: screen;
-    }
-
-    .visual-card::after {
-      background:
-        linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.18) 100%);
-    }
-
-    .info-stack {
-      display: grid;
-      grid-template-rows: 1fr 1fr 1fr;
-      gap: 18px;
-    }
-
-    .info-card {
-      padding: 32px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-height: 0;
-    }
-
-    .num {
-      font-size: 64px;
-      line-height: 1;
-      color: var(--accent);
-      margin-bottom: 18px;
-    }
-
-    .info-card p,
-    .info-card .label {
-      margin: 0;
-      white-space: pre-line;
-    }
-
-    .info-card p {
-      font-size: 24px;
-      line-height: 1.28;
-      color: var(--text);
-    }
-
-    .label {
-      font-family: Inter, Arial, sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-size: 13px;
-      color: rgba(239, 227, 211, 0.5);
-      margin-bottom: 16px;
-    }
-
-    .section {
-      padding: 54px 0 0;
-    }
-
-    .section-tag {
-      font-family: Inter, Arial, sans-serif;
-      font-size: 12px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(239, 227, 211, 0.48);
-      margin-bottom: 18px;
-    }
-
-    .section-title {
-      margin: 0;
-      font-size: clamp(38px, 5vw, 70px);
-      line-height: 0.98;
-      letter-spacing: -0.04em;
-    }
-
-    .about-grid,
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 18px;
-    }
-
-    .section-box {
-      padding: 34px;
-    }
-
-    .text {
-      margin: 0;
-      color: var(--muted);
-      font-family: Inter, Arial, sans-serif;
-      font-size: 18px;
-      line-height: 1.8;
-    }
-
-    .cases-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      margin-top: 22px;
-    }
-
-    .case-card {
-      padding: 32px;
-    }
-
-    .case-number {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: rgba(208, 178, 146, 0.12);
-      border: 1px solid rgba(208, 178, 146, 0.24);
-      color: var(--accent);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-family: Inter, Arial, sans-serif;
-      font-size: 18px;
-      margin-bottom: 18px;
-    }
-
-    .case-card h3 {
-      margin: 0 0 14px;
-      font-size: 38px;
-      line-height: 1.05;
-    }
-
-    .case-card p {
-      margin: 0 0 14px;
-      color: var(--muted);
-      font-family: Inter, Arial, sans-serif;
-      font-size: 17px;
-      line-height: 1.8;
-    }
-
-    .pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .pill {
-      padding: 11px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(208, 178, 146, 0.16);
-      background: rgba(255,255,255,0.03);
-      color: rgba(239, 227, 211, 0.82);
-      font-family: Inter, Arial, sans-serif;
-      font-size: 13px;
-    }
-
-    .portfolio-intro {
-      max-width: 780px;
-      margin-top: 18px;
-      color: var(--muted);
-      font-family: Inter, Arial, sans-serif;
-      font-size: 18px;
-      line-height: 1.8;
-    }
-
-    .videos-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      margin-top: 26px;
-    }
-
-    .video-card {
-      overflow: hidden;
-    }
-
-    .video-frame {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      background: #141414;
-    }
-
-    .video-frame iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      display: block;
-    }
-
-    .video-body {
-      padding: 24px;
-    }
-
-    .video-body h3 {
-      margin: 0 0 10px;
-      font-size: 28px;
-      line-height: 1.12;
-    }
-
-    .video-body p {
-      margin: 0;
-      color: var(--muted);
-      font-family: Inter, Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.75;
-    }
-
-    .logos {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 24px;
-      padding: 28px 0 8px;
-      border-top: 1px solid var(--line);
-      margin-top: 40px;
-    }
-
-    .logo-item {
-      color: rgba(208, 178, 146, 0.82);
-      text-align: center;
-      font-size: 28px;
-      line-height: 1.1;
-      letter-spacing: 0.06em;
-    }
-
-    .logo-item span {
-      display: block;
-      margin-top: 6px;
-      font-size: 11px;
-      font-family: Inter, Arial, sans-serif;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(239, 227, 211, 0.4);
-    }
-
-    .contact-wrap {
-      border: 1px solid var(--line);
-      border-radius: 32px;
-      overflow: hidden;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
-    }
-
-    .contact-left,
-    .contact-right {
-      padding: 34px;
-    }
-
-    .contact-left {
-      background: rgba(208, 178, 146, 0.08);
-    }
-
-    .contact-card {
-      padding: 20px 22px;
-      margin-bottom: 14px;
-    }
-
-    .contact-card strong {
-      display: block;
-      margin-bottom: 8px;
-      font-family: Inter, Arial, sans-serif;
-      font-size: 12px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(239, 227, 211, 0.48);
-    }
-
-    .contact-card span,
-    .contact-card a {
-      font-size: 24px;
-      color: var(--text);
-      word-break: break-word;
-    }
-
-    .footnote {
-      margin-top: 18px;
-      color: rgba(239, 227, 211, 0.48);
-      font-family: Inter, Arial, sans-serif;
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
-    @media (max-width: 1180px) {
-      .hero-grid,
-      .about-grid,
-      .contact-grid,
-      .cases-grid,
-      .videos-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-right {
-        min-height: auto;
-      }
-
-      .logos {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 760px) {
-      .container { width: min(1400px, calc(100% - 22px)); }
-      .topbar { flex-direction: column; align-items: flex-start; }
-      .nav { gap: 18px; }
-      .hero-right { grid-template-columns: 1fr; }
-      .info-stack { grid-template-rows: none; }
-      .visual-card { min-height: 420px; }
-      .hero-title { font-size: clamp(48px, 16vw, 82px); }
-      .hero-sub { font-size: 17px; }
-      .main-btn { min-height: 58px; padding: 0 28px; font-size: 17px; }
-      .circle-btn { width: 58px; height: 58px; font-size: 28px; }
-      .section-box,
-      .case-card,
-      .video-body,
-      .contact-left,
-      .contact-right,
-      .info-card { padding: 22px; }
-      .logos { grid-template-columns: 1fr; }
-      .video-frame { aspect-ratio: 9 / 16; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Лера — нейрокреатор</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  background: #0b0b0b;
+  color: #efe3d3;
+  font-family: 'Playfair Display', serif;
+}
+
+.container {
+  max-width: 1400px;
+  margin: auto;
+  padding: 40px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.nav {
+  display: flex;
+  gap: 40px;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.btn {
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 12px 24px;
+  border-radius: 999px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+h1 {
+  font-size: 90px;
+  line-height: 0.95;
+  margin: 0;
+}
+
+.accent {
+  color: #c27a4a;
+}
+
+.sub {
+  margin-top: 20px;
+  font-size: 20px;
+  opacity: 0.7;
+}
+
+.buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.main-btn {
+  background: #c27a4a;
+  color: black;
+  padding: 16px 32px;
+  border-radius: 999px;
+}
+
+.image {
+  position: relative;
+}
+
+.image img {
+  width: 100%;
+  border-radius: 30px;
+}
+
+.glass {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 20px;
+}
+
+.block {
+  text-align: center;
+  font-size: 14px;
+}
+
+.block svg {
+  margin-bottom: 10px;
+}
+</style>
 </head>
+
 <body>
-  <header class="container">
-    <div class="topbar">
-      <div class="brand">✶ AI VISUAL CREATOR</div>
-      <nav class="nav">
-        <a href="#portfolio">ПОРТФОЛИО</a>
-        <a href="#cases">КЕЙСЫ</a>
-        <a href="#about">ОБО МНЕ</a>
-        <a href="#contact">КОНТАКТЫ</a>
-      </nav>
-      <a class="contact-btn" href="#contact">СВЯЗАТЬСЯ</a>
+
+<div class="container">
+
+<div class="top">
+  <div>✶ AI VISUAL CREATOR</div>
+
+  <div class="nav">
+    <div>ПОРТФОЛИО</div>
+    <div>КЕЙСЫ</div>
+    <div>ОБО МНЕ</div>
+    <div>КОНТАКТЫ</div>
+  </div>
+
+  <div class="btn">СВЯЗАТЬСЯ</div>
+</div>
+
+<div class="hero">
+
+<div>
+  <h1>
+    Создаю нейроконтент<br>
+    и рекламные визуалы:<br>
+    <span class="accent">от отдельных креативов</span><br>
+    до полноценных кампаний.
+  </h1>
+
+  <div class="sub">
+    Форматы — от соцсетей до digital и ТВ.
+  </div>
+
+  <div class="buttons">
+    <div class="main-btn">СМОТРЕТЬ ПОРТФОЛИО</div>
+    <div class="btn">МОИ УСЛУГИ</div>
+  </div>
+</div>
+
+<div class="image">
+  <img src="https://i.postimg.cc/3N5wZ6bH/your-image.jpg">
+
+  <div class="glass">
+
+    <div class="block">
+      <svg width="24" height="24" stroke="#c27a4a" fill="none">
+        <path d="M12 2L14 8L20 10L14 12L12 18L10 12L4 10L10 8Z"/>
+      </svg>
+      ЭСТЕТИКА
     </div>
-  </header>
 
-  <section class="hero">
-    <div class="container">
-      <div class="hero-grid">
-        <div class="hero-left">
-          <h1 class="hero-title">
-            <span class="light">Создаю</span><br>
-            <span class="accent">рекламные</span><br>
-            <span class="accent">визуальные</span><br>
-            <span class="accent">миры</span><br>
-            <span class="light">для брендов,</span><br>
-            <span class="light">продуктов и</span><br>
-            <span class="light">digital-кампаний</span>
-          </h1>
-
-          <p class="hero-sub">
-            AI-видео, реклама, визуальные концепции и контент, который цепляет с первой секунды.
-          </p>
-
-          <div class="hero-actions">
-            <a class="main-btn" href="#portfolio">СМОТРЕТЬ ПОРТФОЛИО</a>
-            <a class="circle-btn" href="#portfolio">↓</a>
-          </div>
-        </div>
-
-        <div class="hero-right">
-          <div class="visual-card"></div>
-          <div class="info-stack">
-            <div class="info-card">
-              <div class="num">01</div>
-              <p>Reels
-Ads
-Key visuals</p>
-            </div>
-            <div class="info-card">
-              <div class="num">02</div>
-              <p>Beauty
-Fashion
-Product / Brand</p>
-            </div>
-            <div class="info-card">
-              <div class="label">Подход</div>
-              <p>Не просто AI-контент, а визуальная концепция, которая выглядит как реклама, а не как случайная генерация.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="logos">
-        <div class="logo-item">MIRALU<span>jewelry</span></div>
-        <div class="logo-item">DEY DESIGN<span>accessories</span></div>
-        <div class="logo-item">SOLO<span>concept</span></div>
-        <div class="logo-item">LUNA<span>cosmetics</span></div>
-        <div class="logo-item">NOIRÉ<span>studio</span></div>
-      </div>
+    <div class="block">
+      <svg width="24" height="24" stroke="#c27a4a" fill="none">
+        <rect x="4" y="4" width="16" height="16"/>
+      </svg>
+      СТРАТЕГИЯ
     </div>
-  </section>
 
-  <section class="section" id="about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="section-box">
-          <div class="section-tag">Обо мне</div>
-          <h2 class="section-title">Делаю AI-контент с мышлением <span style="color: var(--accent);">рекламного режиссёра</span></h2>
-        </div>
-        <div class="section-box">
-          <p class="text">
-            Я нейрокреатор и AI visual director, создаю рекламные видео и визуальные концепции для брендов.
-            Работаю не как генератор картинок, а как режиссёр: продумываю идею, визуальный язык, настроение и то,
-            как ролик будет восприниматься зрителем.
-          </p>
-          <p class="text" style="margin-top: 16px;">
-            Создаю контент, который выглядит как полноценная реклама, а не как случайная AI-генерация.
-            Мне интересны проекты, где важны эстетика, идея и сильная подача: beauty, fashion, аксессуары,
-            предметный контент и визуальные кампании для брендов.
-          </p>
-        </div>
-      </div>
+    <div class="block">
+      <svg width="24" height="24" stroke="#c27a4a" fill="none">
+        <circle cx="12" cy="12" r="9"/>
+      </svg>
+      AI-ПОДХОД
     </div>
-  </section>
 
-  <section class="section" id="cases">
-    <div class="container">
-      <div class="section-tag">Кейсы</div>
-      <h2 class="section-title">Избранные проекты</h2>
+  </div>
+</div>
 
-      <div class="cases-grid">
-        <article class="case-card">
-          <div class="case-number">01</div>
-          <h3>Dey Design</h3>
-          <p>
-            Имиджевый AI-ролик для бренда сумок. Концепт построен на минимализме и визуальной драматургии:
-            объект постепенно раскрывается через пространство, свет и движение, создавая ощущение глубины,
-            премиальности и характера.
-          </p>
-          <p>
-            Ролик работает не как простая демонстрация продукта, а как визуальная история,
-            в которой сумка становится главным эмоциональным центром кадра.
-          </p>
-          <div class="pills">
-            <div class="pill">Идея</div>
-            <div class="pill">Сценарий</div>
-            <div class="pill">Визуальная режиссура</div>
-            <div class="pill">Генерация</div>
-            <div class="pill">Монтаж</div>
-          </div>
-        </article>
+</div>
 
-        <article class="case-card">
-          <div class="case-number">02</div>
-          <h3>Миралу</h3>
-          <p>
-            Полная визуальная упаковка бренда украшений: серия коротких видео, формирующих единый образ бренда.
-            В основе — мягкая эстетика, чувственность, деликатная подача деталей и атмосфера, которая помогает
-            не просто показать продукт, а передать ощущение от него.
-          </p>
-          <p>
-            Контент выстроен как система: каждое видео работает как самостоятельный визуальный элемент,
-            а вместе ролики создают цельное восприятие бренда и его настроения.
-          </p>
-          <div class="pills">
-            <div class="pill">Упаковка бренда</div>
-            <div class="pill">Серия Reels</div>
-            <div class="pill">Визуальная концепция</div>
-            <div class="pill">Продакшн контента</div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
+</div>
 
-  <section class="section" id="portfolio">
-    <div class="container">
-      <div class="section-tag">Портфолио</div>
-      <h2 class="section-title">Видео и визуальные работы</h2>
-      <div class="portfolio-intro">
-        Избранные проекты и брендовые видео. Сильные кейсы сверху, дальше — серия контента и визуальные работы.
-      </div>
-
-      <div class="videos-grid">
-        <article class="video-card">
-          <div class="video-frame">
-            <iframe src="https://rutube.ru/play/embed/4cd918a012f70f5846342129da19a652/" allowfullscreen></iframe>
-          </div>
-          <div class="video-body">
-            <h3>Dey Design — имиджевый AI-ролик</h3>
-            <p>Концептуальный ролик с акцентом на пространство, свет, фактуру и премиальное ощущение продукта.</p>
-          </div>
-        </article>
-
-        <article class="video-card">
-          <div class="video-frame">
-            <iframe src="https://rutube.ru/play/embed/d402a1df8c182081ea63f1127961b99b/" allowfullscreen></iframe>
-          </div>
-          <div class="video-body">
-            <h3>Миралу — AI-визуал для бренда украшений</h3>
-            <p>Короткий fashion-oriented ролик с акцентом на атмосферу, деликатность и эмоциональную подачу продукта.</p>
-          </div>
-        </article>
-
-        <article class="video-card">
-          <div class="video-frame">
-            <iframe src="https://rutube.ru/play/embed/0ab3d7e10c955df4e7a4efa998f07b03/" allowfullscreen></iframe>
-          </div>
-          <div class="video-body">
-            <h3>Миралу — серия брендовых коротких видео</h3>
-            <p>Один из роликов из общей визуальной системы бренда, где каждое видео работает как часть единой упаковки.</p>
-          </div>
-        </article>
-
-        <article class="video-card">
-          <div class="video-frame">
-            <iframe src="https://rutube.ru/play/embed/cb1e187c72b6d2c707158d5568bee69a/" allowfullscreen></iframe>
-          </div>
-          <div class="video-body">
-            <h3>Миралу — визуальная подача украшений</h3>
-            <p>Ролик, построенный на мягком темпе, фокусе на деталях и эстетике, которая усиливает восприятие бренда.</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="contact" style="padding-bottom: 54px;">
-    <div class="container">
-      <div class="contact-wrap">
-        <div class="contact-grid">
-          <div class="contact-left">
-            <div class="section-tag">Контакты</div>
-            <h2 class="section-title">Готова к брендовым кейсам, коллаборациям и коммерческим проектам</h2>
-            <p class="text" style="margin-top: 18px;">
-              Для обсуждения проекта, съёмки, серии роликов или визуальной упаковки бренда — пиши в Telegram или на почту.
-            </p>
-          </div>
-          <div class="contact-right">
-            <div class="contact-card">
-              <strong>Telegram</strong>
-              <a href="https://t.me/lerchikart" target="_blank">@lerchikart</a>
-            </div>
-            <div class="contact-card">
-              <strong>Email</strong>
-              <a href="mailto:lerochka2223@gmail.com">lerochka2223@gmail.com</a>
-            </div>
-            <div class="footnote">
-              Если потом захочешь поменять контакты, тексты или добавить новые кейсы — просто отредактируй файл <strong>index.html</strong> и обнови сайт.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 </body>
 </html>
