@@ -753,6 +753,18 @@ body { font-family:'Playfair Display',serif; }
   #services .expertise-media,
   #services .expertise-tile.wide .expertise-media{aspect-ratio:16/10;min-height:0}
 }
+
+/* Expertise showcase: four cards across on desktop */
+@media(min-width:1000px){
+  #services .expertise-showcase{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+  #services .expertise-tile.wide{grid-column:auto}
+  #services .expertise-media,
+  #services .expertise-tile.wide .expertise-media{aspect-ratio:3/4;min-height:0}
+  #services .expertise-copy{padding:20px 17px 24px}
+  #services .expertise-copy h3{font-size:clamp(18px,1.6vw,25px)}
+  #services .expertise-copy p{font-size:13px;line-height:1.65}
+  #services .expertise-media-label{left:16px;bottom:16px;font-size:9px}
+}
 </style>
 </head>
 <body>
