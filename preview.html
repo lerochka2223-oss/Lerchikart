@@ -721,6 +721,15 @@ body { font-family:'Playfair Display',serif; }
 #services .service-row h3 { font-family:'Playfair Display',serif; color:var(--text); font-size:clamp(22px,2.1vw,31px); font-weight:600; line-height:1.25; letter-spacing:0; margin:0 0 13px; }
 #services .service-row p { font-family:Arial,Helvetica,sans-serif; color:var(--muted); font-size:15px; line-height:1.75; max-width:630px; margin:0; }
 @media(max-width:760px) { #services .service-list { grid-template-columns:1fr; row-gap:32px; margin-top:38px; padding-top:28px; } #services .service-row>span { margin-bottom:12px; } #services .service-row h3 { font-size:23px; } }
+
+/* About portrait sizing only */
+@media(min-width:761px) {
+  #about .creator-grid { grid-template-columns:minmax(0,1.45fr) minmax(0,.55fr); gap:clamp(35px,4vw,72px); }
+  #about .creator-portrait { width:100%; max-width:420px; justify-self:end; }
+}
+@media(max-width:760px) {
+  #about .creator-portrait { width:min(100%,360px); max-width:360px; margin-inline:auto; }
+}
 </style>
 </head>
 <body>
