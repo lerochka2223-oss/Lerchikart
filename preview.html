@@ -746,6 +746,13 @@ body { font-family:'Playfair Display',serif; }
 #services .expertise-copy p{font:15px/1.7 Arial,Helvetica,sans-serif;color:var(--muted);max-width:760px;margin:0}
 @media(max-width:760px){#services .expertise-showcase{grid-template-columns:1fr;gap:16px;margin-top:32px}#services .expertise-tile.wide{grid-column:auto}#services .expertise-media,#services .expertise-tile.wide .expertise-media{aspect-ratio:16/10;min-height:170px}#services .expertise-copy{padding:19px 20px 23px}#services .expertise-copy h3{font-size:23px}#services .expertise-copy p{font-size:14px}}
 @media(prefers-reduced-motion:reduce){#services .expertise-tile{transition:none}#services .expertise-tile:hover{transform:none}}
+
+/* Expertise showcase: equal two-by-two tiles */
+@media(min-width:761px){
+  #services .expertise-tile.wide{grid-column:auto}
+  #services .expertise-media,
+  #services .expertise-tile.wide .expertise-media{aspect-ratio:16/10;min-height:0}
+}
 </style>
 </head>
 <body>
