@@ -377,12 +377,11 @@
       line-height: 1.8;
     }
 
-    .videos-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 26px;
-    }
+    .videos-grid { columns: 3; column-gap: 18px; margin-top: 26px; }
+    .videos-grid .video-card { display:inline-block; width:100%; margin:0 0 18px; break-inside:avoid; vertical-align:top; }
+    .videos-grid .video-card[hidden] { display:none; }
+    .videos-grid .is-vertical .video-preview { aspect-ratio:9/16; }
+    .videos-grid .is-horizontal .video-preview { aspect-ratio:16/9; }
 
     .video-card {
       overflow: hidden;
@@ -489,7 +488,7 @@
       }
     }
 
-    @media (max-width: 900px) { .videos-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    @media (max-width: 900px) { .videos-grid { columns:2; } }
     @media (max-width: 760px) {
       .container {
         width: min(1400px, calc(100% - 22px));
@@ -536,7 +535,7 @@
         padding: 22px;
       }
 
-      .video-preview { aspect-ratio: 9 / 16; }
+      
     }
 
     .portfolio-filters { display:flex; flex-wrap:wrap; gap:10px; margin-top:26px; }
@@ -547,7 +546,7 @@
     .video-poster { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
     .preview-shade { position:absolute; inset:0; background:linear-gradient(transparent 40%,rgba(0,0,0,.7)); pointer-events:none; }
     .preview-play { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); display:grid; place-items:center; width:70px; height:70px; border:1px solid #ffffff80; border-radius:50%; background:#0008; font-size:23px; pointer-events:none; }
-    .preview-note { position:absolute; bottom:18px; left:18px; right:18px; text-align:left; font:12px Arial,sans-serif; color:#eee; pointer-events:none; }
+    .preview-note { display:none; }
     .hover-player { position:absolute; inset:0; width:100%; height:100%; border:0; pointer-events:none; }
     .video-body h3 { font-size:23px; }
     .video-body p { font-size:14px; }
@@ -555,7 +554,7 @@
     .video-modal::backdrop { background:#000d; }
     .video-modal iframe { width:100%; aspect-ratio:16/9; display:block; border:0; }
     .modal-close { position:absolute; right:12px; top:7px; background:transparent; color:white; border:0; font-size:28px; cursor:pointer; }
-    @media(max-width:600px){ .videos-grid { grid-template-columns: 1fr; } .video-preview { aspect-ratio:16/9; } }
+    @media(max-width:600px){ .videos-grid { columns:1; } }
   </style>
 </head>
 <body>
@@ -683,80 +682,83 @@
   <section class="section" id="portfolio">
     <div class="container">
       <div class="section-tag">Портфолио</div>
-      <h2 class="section-title">Видео и визуальные работы</h2>
+      <h2 class="section-title">Видеопортфолио</h2>
       <div class="portfolio-intro">
-        Рекламные ролики, брендовые серии и визуальные эксперименты. Наведи курсор для просмотра, нажми для воспроизведения со звуком.
+        Реклама, музыкальные клипы и анимация. Наведи курсор для предпросмотра, нажми для просмотра со звуком.
       </div>
 
       <div class="portfolio-filters" role="group" aria-label="Категории портфолио">
         <button class="filter-btn active" data-filter="all" aria-pressed="true">Все работы</button>
-        <button class="filter-btn" data-filter="advertising" aria-pressed="false">Рекламные видео</button>
-        <button class="filter-btn" data-filter="brand" aria-pressed="false">Брендовый контент</button>
+        <button class="filter-btn" data-filter="advertising" aria-pressed="false">Реклама</button>
+        <button class="filter-btn" data-filter="clips" aria-pressed="false">Клипы</button>
+        <button class="filter-btn" data-filter="animation" aria-pressed="false">Анимация</button>
       </div>
       <div class="videos-grid">
-        <article class="video-card" data-category="advertising" data-video="4cd918a012f70f5846342129da19a652">
-          <button class="video-preview" type="button" aria-label="Смотреть Dey Design — имиджевый AI-ролик со звуком">
+        <article class="video-card is-horizontal" data-category="advertising" data-video="4cd918a012f70f5846342129da19a652">
+          <button class="video-preview" type="button" aria-label="Смотреть DAYDESIGN со звуком">
             <img class="video-poster" src="https://rutube.ru/api/video/4cd918a012f70f5846342129da19a652/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
             <span class="preview-shade"></span><span class="preview-play">▶</span>
-            <span class="preview-note">Наведи для предпросмотра · нажми для просмотра</span>
           </button>
-          
         </article>
-        <article class="video-card" data-category="brand" data-video="d402a1df8c182081ea63f1127961b99b">
-          <button class="video-preview" type="button" aria-label="Смотреть Миралу — AI-визуал для бренда украшений со звуком">
-            <img class="video-poster" src="https://rutube.ru/api/video/d402a1df8c182081ea63f1127961b99b/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+        <article class="video-card is-horizontal" data-category="advertising" data-video="0d4868dabbe2eacbc01674e4a41b4559">
+          <button class="video-preview" type="button" aria-label="Смотреть Fashion Jewelry со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/0d4868dabbe2eacbc01674e4a41b4559/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
             <span class="preview-shade"></span><span class="preview-play">▶</span>
-            <span class="preview-note">Наведи для предпросмотра · нажми для просмотра</span>
           </button>
-          
         </article>
-        <article class="video-card" data-category="brand" data-video="0ab3d7e10c955df4e7a4efa998f07b03">
-          <button class="video-preview" type="button" aria-label="Смотреть Миралу — серия брендовых коротких видео со звуком">
+        <article class="video-card is-vertical" data-category="advertising" data-video="36c132823bd6db5c8656bc3e595c5f12">
+          <button class="video-preview" type="button" aria-label="Смотреть Demix со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/36c132823bd6db5c8656bc3e595c5f12/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-horizontal" data-category="advertising" data-video="58b73e8eaa1809f49542697c51b6b494">
+          <button class="video-preview" type="button" aria-label="Смотреть Напиток со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/58b73e8eaa1809f49542697c51b6b494/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-vertical" data-category="advertising" data-video="0ab3d7e10c955df4e7a4efa998f07b03">
+          <button class="video-preview" type="button" aria-label="Смотреть MIRALU — Вне времени со звуком">
             <img class="video-poster" src="https://rutube.ru/api/video/0ab3d7e10c955df4e7a4efa998f07b03/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
             <span class="preview-shade"></span><span class="preview-play">▶</span>
-            <span class="preview-note">Наведи для предпросмотра · нажми для просмотра</span>
           </button>
-          
         </article>
-        <article class="video-card" data-category="brand" data-video="cb1e187c72b6d2c707158d5568bee69a">
-          <button class="video-preview" type="button" aria-label="Смотреть Миралу — визуальная подача украшений со звуком">
+        <article class="video-card is-horizontal" data-category="advertising" data-video="cda475a3effa89f1465334390269f298">
+          <button class="video-preview" type="button" aria-label="Смотреть Мороженое со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/cda475a3effa89f1465334390269f298/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-horizontal" data-category="advertising" data-video="e972cc393bf06b30601ce3a68d0517a0">
+          <button class="video-preview" type="button" aria-label="Смотреть Фильм в поддержку Леры со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/e972cc393bf06b30601ce3a68d0517a0/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-vertical" data-category="animation" data-video="cb1e187c72b6d2c707158d5568bee69a">
+          <button class="video-preview" type="button" aria-label="Смотреть MIRALU — Stop Motion со звуком">
             <img class="video-poster" src="https://rutube.ru/api/video/cb1e187c72b6d2c707158d5568bee69a/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
             <span class="preview-shade"></span><span class="preview-play">▶</span>
-            <span class="preview-note">Наведи для предпросмотра · нажми для просмотра</span>
           </button>
-          
         </article>
-        <article class="video-card" data-category="brand" data-video="9ebea5526bd086fd0c55f0eac66635ed">
-          <button class="video-preview" type="button" aria-label="Смотреть Миралу — короткий AI Reels для бренда со звуком">
-            <img class="video-poster" src="https://rutube.ru/api/video/9ebea5526bd086fd0c55f0eac66635ed/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+        <article class="video-card is-vertical" data-category="animation" data-video="ccd9613e2651fcec200b169838c85029">
+          <button class="video-preview" type="button" aria-label="Смотреть SAKHALIN со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/ccd9613e2651fcec200b169838c85029/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
             <span class="preview-shade"></span><span class="preview-play">▶</span>
-            <span class="preview-note">Наведи для предпросмотра · нажми для просмотра</span>
           </button>
-          
         </article>
-        <article class="video-card" data-category="brand" data-video="3efb1741dcb68f1cef8d7e12d8c8d0d4">
-          <button class="video-preview" type="button" aria-label="Смотреть Миралу — atmospheric product visual со звуком">
-            <img class="video-poster" src="https://rutube.ru/api/video/3efb1741dcb68f1cef8d7e12d8c8d0d4/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+        <article class="video-card is-horizontal" data-category="clips" data-video="cd2437f916127828cbc3b176d2f4a0ce">
+          <button class="video-preview" type="button" aria-label="Смотреть Клип певицы со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/cd2437f916127828cbc3b176d2f4a0ce/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
             <span class="preview-shade"></span><span class="preview-play">▶</span>
-            <span class="preview-note">Наведи для предпросмотра · нажми для просмотра</span>
           </button>
-          
         </article>
-        <article class="video-card" data-category="brand" data-video="3b819d8f6f05fa3bf2686a524ee27285">
-          <button class="video-preview" type="button" aria-label="Смотреть Миралу — часть серии контента со звуком">
-            <img class="video-poster" src="https://rutube.ru/api/video/3b819d8f6f05fa3bf2686a524ee27285/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+        <article class="video-card is-horizontal" data-category="clips" data-video="08f142d539c1335a823d1b1bcd1ba4c1">
+          <button class="video-preview" type="button" aria-label="Смотреть Авторский клип к 9 Мая со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/08f142d539c1335a823d1b1bcd1ba4c1/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
             <span class="preview-shade"></span><span class="preview-play">▶</span>
-            <span class="preview-note">Наведи для предпросмотра · нажми для просмотра</span>
           </button>
-          
-        </article>
-        <article class="video-card" data-category="brand" data-video="51f882638a8729a05727ea74d8f0cad2">
-          <button class="video-preview" type="button" aria-label="Смотреть Миралу — финальный ролик из подборки со звуком">
-            <img class="video-poster" src="https://rutube.ru/api/video/51f882638a8729a05727ea74d8f0cad2/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
-            <span class="preview-shade"></span><span class="preview-play">▶</span>
-            <span class="preview-note">Наведи для предпросмотра · нажми для просмотра</span>
-          </button>
-          
         </article>
       </div>
     </div>
