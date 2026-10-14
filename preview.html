@@ -713,6 +713,14 @@ body { font-family:'Playfair Display',serif; }
 #approach .approach-principle h3 { font-family:'Playfair Display',serif; font-size:clamp(22px,2.1vw,31px); line-height:1.25; font-weight:600; color:var(--text); margin:0 0 13px; }
 #approach .approach-principle p { font-family:Arial,Helvetica,sans-serif; font-size:15px; line-height:1.75; color:var(--muted); margin:0; max-width:630px; }
 @media(max-width:760px) { #approach .approach-principles { grid-template-columns:1fr; row-gap:32px; margin-top:38px; padding-top:28px; } #approach .approach-index { margin-bottom:12px; } #approach .approach-principle h3 { font-size:23px; } }
+
+/* Expertise section: match airy editorial approach, distinct from workflow */
+#services .service-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:clamp(28px,5vw,95px); row-gap:45px; margin-top:54px; padding-top:36px; border-top:1px solid rgba(239,227,211,.24); }
+#services .service-row { display:block; padding:0; border:0; min-width:0; }
+#services .service-row>span { display:block; font-family:Arial,Helvetica,sans-serif; color:var(--accent); font-size:13px; font-weight:600; letter-spacing:.12em; margin-bottom:24px; }
+#services .service-row h3 { font-family:'Playfair Display',serif; color:var(--text); font-size:clamp(22px,2.1vw,31px); font-weight:600; line-height:1.25; letter-spacing:0; margin:0 0 13px; }
+#services .service-row p { font-family:Arial,Helvetica,sans-serif; color:var(--muted); font-size:15px; line-height:1.75; max-width:630px; margin:0; }
+@media(max-width:760px) { #services .service-list { grid-template-columns:1fr; row-gap:32px; margin-top:38px; padding-top:28px; } #services .service-row>span { margin-bottom:12px; } #services .service-row h3 { font-size:23px; } }
 </style>
 </head>
 <body>
