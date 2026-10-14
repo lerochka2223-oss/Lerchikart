@@ -612,108 +612,69 @@
       #portfolio .container { width:calc(100% - 36px); }
     }
 
-  </style>
+  
+/* LERCHIKART editorial redesign — preview only */
+:root { --accent:#d7ff35; --text:#f5f4f0; --muted:rgba(245,244,240,.7); --muted-2:rgba(245,244,240,.5); }
+body { font-family:Arial,Helvetica,sans-serif; background:#090a0c; }
+.site-header { position:absolute; top:0; left:0; width:100%; z-index:50; }
+.site-header .topbar { padding:24px 0; }
+.site-header .brand { font-family:Arial,sans-serif; font-size:21px; letter-spacing:-.035em; }
+.site-header .nav { gap:30px; font-size:12px; font-weight:700; }
+.site-header .contact-btn { background:var(--accent); color:#0b0b0b; font-weight:700; padding:15px 20px; border:0; }
+.new-hero { min-height:100svh; position:relative; display:flex; align-items:center; padding:120px 0 100px; isolation:isolate; overflow:hidden; }
+.hero-placeholder { position:absolute; inset:0; z-index:-1; background:linear-gradient(90deg,rgba(0,0,0,.7),rgba(0,0,0,.15)),linear-gradient(135deg,#393b40,#777a7e 52%,#36383e); }
+.hero-placeholder:after { content:""; position:absolute; inset:0; backdrop-filter:blur(6px); background:rgba(0,0,0,.24); }
+.placeholder-label { position:absolute; right:6%; top:50%; transform:translateY(-50%); z-index:1; font:700 13px Arial,sans-serif; letter-spacing:.2em; color:rgba(255,255,255,.52); }
+.new-hero .hero-content { position:relative; z-index:2; }
+.new-hero .hero-kicker { color:var(--accent); font-weight:700; margin-bottom:25px; }
+.new-hero h1 { font-family:Arial,Helvetica,sans-serif; font-size:clamp(48px,7vw,118px); line-height:.96; font-weight:900; letter-spacing:-.065em; max-width:1100px; }
+.typing-line { margin-top:35px; min-height:1.5em; font-size:clamp(20px,2.6vw,36px); font-weight:700; letter-spacing:-.025em; color:var(--accent); }
+.typing-cursor { display:inline-block; animation:blink .8s step-end infinite; }
+@keyframes blink { 50% { opacity:0; } }
+.new-hero .hero-actions { margin-top:38px; }
+.new-hero .main-btn { background:#f6f5f0; color:#111; font-weight:800; }
+.new-hero .ghost-btn { font-weight:700; }
+.hero-bottom { position:absolute; bottom:25px; left:4%; right:4%; display:flex; justify-content:space-between; color:#eee9; font-size:11px; letter-spacing:.14em; }
+.section { padding-top:105px; }
+.section-tag { color:var(--accent); font-size:12px; font-weight:700; }
+.section-title,.display-heading { font-family:Arial,Helvetica,sans-serif; font-weight:900; letter-spacing:-.055em; line-height:1.04; }
+.display-heading { font-size:clamp(35px,5.3vw,76px); max-width:1120px; }
+.portfolio-intro { font-size:15px; max-width:760px; }
+.statement-block { padding:155px 0; margin-top:130px; background:linear-gradient(125deg,#17191c,#34373c); }
+.statement-block h2,.closing-section h2 { font-size:clamp(42px,7.2vw,116px); font-weight:900; letter-spacing:-.065em; line-height:.98; margin:40px 0; max-width:1250px; }
+.statement-block p,.closing-section p { color:var(--muted); font-size:clamp(16px,1.5vw,21px); line-height:1.65; max-width:800px; }
+.content-section { padding-top:130px; }
+.service-list { margin-top:60px; border-top:1px solid var(--line); }
+.service-row { display:grid; grid-template-columns:75px 1fr; gap:15px; padding:34px 0; border-bottom:1px solid var(--line); }
+.service-row>span,.benefit>span,.workflow-grid span { color:var(--accent); font-size:14px; font-weight:700; }
+.service-row h3 { font-size:clamp(24px,3.3vw,47px); letter-spacing:-.04em; margin:0 0 10px; }
+.service-row p,.benefit p,.workflow-grid p,.creator-copy p { font-size:16px; line-height:1.75; color:var(--muted); margin:0; max-width:800px; }
+.benefits-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin-top:55px; }
+.benefit { background:#161719; border:1px solid var(--line); border-radius:18px; padding:32px; min-height:245px; }
+.benefit h3,.workflow-grid h3 { font-size:24px; letter-spacing:-.025em; margin:32px 0 15px; }
+.workflow-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px; margin-top:65px; }
+.workflow-grid>div { border-top:1px solid var(--accent); padding-top:25px; }
+.workflow-grid h3 { font-size:21px; }
+.creator-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:55px; align-items:center; margin-top:30px; }
+.creator-copy p { margin:20px 0; }
+.portrait-placeholder { min-height:570px; background:linear-gradient(140deg,#696c71,#44474b); border-radius:22px; display:grid; place-items:center; padding:24px; text-align:center; color:#e0e1e2; font-size:12px; font-weight:700; letter-spacing:.2em; }
+.closing-section { padding:145px 0 40px; margin-top:145px; background:#17191c; }
+.closing-links { display:flex; flex-wrap:wrap; gap:20px; margin-top:48px; }
+.closing-links a { background:var(--accent); color:#0b0b0b; padding:22px 30px; border-radius:50px; font-size:13px; font-weight:800; }
+.closing-links a+a { background:transparent; color:#fff; border:1px solid #ffffff45; }
+.site-footer { display:flex; justify-content:space-between; gap:20px; border-top:1px solid var(--line); margin-top:130px; padding-top:25px; font-size:11px; letter-spacing:.12em; color:var(--muted-2); }
+@media(max-width:950px) { .site-header .nav { gap:14px; } .workflow-grid { grid-template-columns:repeat(2,1fr); } .creator-grid { gap:25px; } }
+@media(max-width:760px) { .site-header .topbar { flex-direction:row; flex-wrap:wrap; align-items:center; } .site-header .nav { order:3; width:100%; justify-content:space-between; font-size:10px; } .site-header .contact-btn { padding:11px 15px; font-size:11px; } .new-hero { min-height:95svh; padding:160px 0 90px; } .new-hero h1 { font-size:clamp(39px,9.5vw,70px); } .placeholder-label { top:28%; right:7%; font-size:9px; } .hero-bottom { font-size:9px; } .statement-block { padding:95px 0; margin-top:90px; } .content-section { padding-top:85px; } .benefits-grid,.creator-grid { grid-template-columns:1fr; } .workflow-grid { gap:25px; } .portrait-placeholder { min-height:450px; } .closing-section { padding-top:95px; margin-top:90px; } }
+@media(max-width:480px) { .site-header .brand { font-size:17px; } .site-header .nav { font-size:9px; gap:8px; } .new-hero .hero-actions { gap:9px; } .new-hero .main-btn,.new-hero .ghost-btn { padding:0 18px; font-size:11px; min-height:48px; } .service-row { grid-template-columns:40px 1fr; } .workflow-grid { grid-template-columns:1fr; } .benefit { min-height:0; } .site-footer { flex-direction:column; } }
+@media(prefers-reduced-motion:reduce) { .typing-cursor { animation:none; } }
+
+</style>
 </head>
 <body>
 
-  <header class="container">
-    <div class="topbar">
-      <div class="brand">
-        <span>✶</span>
-        <span>AI VISUAL CREATOR</span>
-      </div>
-
-      <nav class="nav">
-        <a href="#portfolio">ПОРТФОЛИО</a>
-        
-        <a href="#about">ОБО МНЕ</a>
-        <a href="#contact">КОНТАКТЫ</a>
-      </nav>
-
-      <a class="contact-btn" href="#contact">СВЯЗАТЬСЯ</a>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="container">
-      <div class="hero-grid">
-        <div class="hero-left">
-          <div class="hero-kicker">AI-ВИДЕО • РЕКЛАМА • ВИЗУАЛЬНЫЕ РЕШЕНИЯ</div>
-
-          <h1>
-            Создаю нейроконтент<br>
-            и рекламные визуалы:<br>
-            <span class="accent">от отдельных креативов</span><br>
-            до полноценных кампаний.
-          </h1>
-
-          <div class="sub">
-            Форматы — от соцсетей до digital и ТВ.
-          </div>
-
-          <div class="hero-actions">
-            <a class="main-btn" href="#portfolio">СМОТРЕТЬ ПОРТФОЛИО</a>
-            <a class="ghost-btn" href="#contact">ОБСУДИТЬ ПРОЕКТ</a>
-          </div>
-
-          <div class="hero-contacts">
-            <div class="hero-contacts-title">Связаться со мной</div>
-            <div class="hero-contacts-row">
-              <a class="hero-contact-item" href="https://t.me/lerchikart" target="_blank">
-                <span>✈</span>
-                <span>@lerchikart</span>
-              </a>
-              <a class="hero-contact-item" href="mailto:lerochka2223@gmail.com">
-                <span>✉</span>
-                <span>lerochka2223@gmail.com</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-right">
-          <div class="hero-overlay">
-            <div class="feature">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M12 2L13.8 8.2L20 10L13.8 11.8L12 18L10.2 11.8L4 10L10.2 8.2L12 2Z"/>
-                </svg>
-              </div>
-              <div class="feature-title">Эстетика</div>
-              <div class="feature-text">Визуальный стиль, который запоминается</div>
-            </div>
-
-            <div class="feature">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M12 3L20 8L12 13L4 8L12 3Z"/>
-                  <path d="M4 16L12 11L20 16L12 21L4 16Z"/>
-                </svg>
-              </div>
-              <div class="feature-title">Стратегия</div>
-              <div class="feature-text">Смысл, который работает на бренд</div>
-            </div>
-
-            <div class="feature">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <circle cx="12" cy="12" r="8"></circle>
-                  <path d="M12 4V1"></path>
-                  <path d="M12 23V20"></path>
-                  <path d="M4 12H1"></path>
-                  <path d="M23 12H20"></path>
-                </svg>
-              </div>
-              <div class="feature-title">AI-подход</div>
-              <div class="feature-text">Современные инструменты для сильного результата</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="about">
+  <header class="site-header"><div class="container topbar"><a class="brand" href="#top">✳ <strong>LERCHIKART</strong></a><nav class="nav" aria-label="Навигация"><a href="#portfolio">РАБОТЫ</a><a href="#services">НАПРАВЛЕНИЯ</a><a href="#about">ОБО МНЕ</a><a href="#contact">КОНТАКТЫ</a></nav><a class="contact-btn" href="#contact">ОБСУДИТЬ ПРОЕКТ ↗</a></div></header>
+<section class="hero new-hero" id="top"><div class="hero-placeholder" aria-label="Место для будущего фонового видео"><span class="placeholder-label">ЗДЕСЬ БУДЕТ ВИДЕО</span></div><div class="container hero-content"><div class="hero-kicker">AI CREATOR / VISUAL DIRECTOR</div><h1>МЕДИАКОНТЕНТ<br>ДЛЯ БРЕНДОВ<br>ЧЕРЕЗ <span class="accent">AI</span></h1><div class="typing-line"><span id="typingText" aria-label="Направления: рекламные ролики, имиджевые видео, продуктовая реклама, анимация, AI-визуал">Рекламные ролики</span><span class="typing-cursor" aria-hidden="true">|</span></div><div class="hero-actions"><a class="main-btn" href="#contact">ОБСУДИТЬ ПРОЕКТ ↗</a><a class="ghost-btn" href="#portfolio">СМОТРЕТЬ РАБОТЫ ↓</a></div></div><div class="hero-bottom">LERCHIKART © 2026 <span>SCROLL TO EXPLORE ↓</span></div></section>
+<section class="section" id="about">
     <div class="container">
       <div class="about-grid">
         <div class="section-box">
@@ -737,6 +698,340 @@
   </section>
 
   <section class="section" id="portfolio">
+    <div class="container">
+      <div class="section-tag">02 / SELECTED WORKS</div>
+      <h2 class="section-title display-heading">РАБОТЫ, КОТОРЫЕ ГОВОРЯТ САМИ ЗА СЕБЯ.</h2>
+      <div class="portfolio-intro">
+        Реклама, музыкальные клипы и анимация. Наведи курсор для предпросмотра, нажми для просмотра со звуком.
+      </div>
+
+      <div class="portfolio-filters" role="group" aria-label="Категории портфолио">
+        <button class="filter-btn active" data-filter="all" aria-pressed="true">Все работы</button>
+        <button class="filter-btn" data-filter="advertising" aria-pressed="false">Реклама</button>
+        <button class="filter-btn" data-filter="clips" aria-pressed="false">Клипы</button>
+        <button class="filter-btn" data-filter="animation" aria-pressed="false">Анимация</button>
+      </div>
+      <div class="videos-grid">
+        <article class="video-card is-horizontal" data-category="advertising" data-video="4cd918a012f70f5846342129da19a652">
+          <button class="video-preview" type="button" aria-label="Смотреть DAYDESIGN со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/4cd918a012f70f5846342129da19a652/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-horizontal" data-category="advertising" data-video="0d4868dabbe2eacbc01674e4a41b4559">
+          <button class="video-preview" type="button" aria-label="Смотреть Fashion Jewelry со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/0d4868dabbe2eacbc01674e4a41b4559/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-vertical" data-category="advertising" data-video="36c132823bd6db5c8656bc3e595c5f12">
+          <button class="video-preview" type="button" aria-label="Смотреть Demix со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/36c132823bd6db5c8656bc3e595c5f12/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-horizontal" data-category="advertising" data-video="58b73e8eaa1809f49542697c51b6b494">
+          <button class="video-preview" type="button" aria-label="Смотреть Напиток со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/58b73e8eaa1809f49542697c51b6b494/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-vertical" data-category="advertising" data-video="0ab3d7e10c955df4e7a4efa998f07b03">
+          <button class="video-preview" type="button" aria-label="Смотреть MIRALU — Вне времени со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/0ab3d7e10c955df4e7a4efa998f07b03/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-horizontal" data-category="advertising" data-video="cda475a3effa89f1465334390269f298">
+          <button class="video-preview" type="button" aria-label="Смотреть Мороженое со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/cda475a3effa89f1465334390269f298/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-horizontal" data-category="advertising" data-video="e972cc393bf06b30601ce3a68d0517a0">
+          <button class="video-preview" type="button" aria-label="Смотреть Фильм в поддержку Леры со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/e972cc393bf06b30601ce3a68d0517a0/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-vertical" data-category="animation" data-video="cb1e187c72b6d2c707158d5568bee69a">
+          <button class="video-preview" type="button" aria-label="Смотреть MIRALU — Stop Motion со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/cb1e187c72b6d2c707158d5568bee69a/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-vertical" data-category="animation" data-video="ccd9613e2651fcec200b169838c85029">
+          <button class="video-preview" type="button" aria-label="Смотреть SAKHALIN со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/ccd9613e2651fcec200b169838c85029/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-horizontal" data-category="clips" data-video="cd2437f916127828cbc3b176d2f4a0ce">
+          <button class="video-preview" type="button" aria-label="Смотреть Клип певицы со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/cd2437f916127828cbc3b176d2f4a0ce/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-horizontal" data-category="clips" data-video="08f142d539c1335a823d1b1bcd1ba4c1">
+          <button class="video-preview" type="button" aria-label="Смотреть Авторский клип к 9 Мая со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/08f142d539c1335a823d1b1bcd1ba4c1/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  
+<section class="statement-block" id="vision"><div class="container"><div class="section-tag">03 / CREATIVE FREEDOM</div><h2>ИДЕИ БОЛЬШЕ НЕ ОГРАНИЧЕНЫ ВОЗМОЖНОСТЯМИ СЪЁМКИ.</h2><p>AI открывает новые способы создавать визуальные истории — от реалистичных рекламных сцен до миров, которые существуют только в воображении.</p></div></section>
+<section class="section content-section" id="services"><div class="container"><div class="section-tag">04 / EXPERTISE</div><h2 class="section-title display-heading">ОТ ИДЕИ ДО ФИНАЛЬНОГО КАДРА.</h2><div class="service-list">
+<div class="service-row"><span>01</span><div><h3>РЕКЛАМНЫЕ РОЛИКИ</h3><p>Видеореклама продуктов и брендов для digital-площадок, социальных сетей и рекламных кампаний.</p></div></div>
+<div class="service-row"><span>02</span><div><h3>ИМИДЖЕВЫЕ ФИЛЬМЫ</h3><p>Атмосферные визуальные истории, раскрывающие характер, эстетику и ценности бренда.</p></div></div>
+<div class="service-row"><span>03</span><div><h3>ПРОДУКТОВЫЙ AI-ВИЗУАЛ</h3><p>Предметные сцены, fashion и beauty-контент с вниманием к материалам, свету и деталям.</p></div></div>
+<div class="service-row"><span>04</span><div><h3>КЛИПЫ И АНИМАЦИЯ</h3><p>Музыкальные видео, стилизованная анимация и экспериментальные визуальные форматы.</p></div></div>
+</div></div></section>
+<section class="section content-section" id="approach"><div class="container"><div class="section-tag">05 / THE APPROACH</div><h2 class="section-title display-heading">НЕ ПРОСТО ГЕНЕРАЦИЯ.<br>ПОЛНОЦЕННЫЙ ТВОРЧЕСКИЙ ПРОЦЕСС.</h2><div class="benefits-grid">
+<div class="benefit"><span>01 /</span><h3>РЕЖИССЁРСКИЙ ПОДХОД</h3><p>Каждый проект начинается с идеи. Я продумываю композицию, последовательность кадров, настроение и визуальный язык.</p></div>
+<div class="benefit"><span>02 /</span><h3>ВНИМАНИЕ К ДЕТАЛЯМ</h3><p>Реалистичная фактура, свет, движение и точность передачи продукта — всё работает на целостность изображения.</p></div>
+<div class="benefit"><span>03 /</span><h3>СВОБОДА РЕАЛИЗАЦИИ</h3><p>Создаю сцены и визуальные концепции, для которых традиционная съёмка потребовала бы сложных декораций, локаций и производства.</p></div>
+<div class="benefit"><span>04 /</span><h3>ГОТОВЫЙ РЕЗУЛЬТАТ</h3><p>От сценария и разработки кадров до генерации, монтажа, звука и финального видео.</p></div>
+</div></div></section>
+<section class="section content-section" id="workflow"><div class="container"><div class="section-tag">06 / WORKFLOW</div><h2 class="section-title display-heading">КАК ИДЕЯ СТАНОВИТСЯ ФИЛЬМОМ.</h2><div class="workflow-grid">
+<div><span>01</span><h3>БРИФ И ЗНАКОМСТВО</h3><p>Обсуждаем задачу, продукт, аудиторию, желаемую эстетику и формат видео.</p></div>
+<div><span>02</span><h3>КОНЦЕПЦИЯ И СЦЕНАРИЙ</h3><p>Разрабатываю идею, визуальное направление и последовательность сцен.</p></div>
+<div><span>03</span><h3>AI-ПРОДАКШЕН</h3><p>Создаю и дорабатываю кадры, контролирую стилистику, движение и детали.</p></div>
+<div><span>04</span><h3>ПОСТПРОДАКШЕН</h3><p>Монтаж, звук, цвет, финальная сборка и подготовка видео к публикации.</p></div>
+</div></div></section>
+<section class="section content-section" id="about"><div class="container"><div class="section-tag">07 / THE CREATOR</div><div class="creator-grid"><div class="creator-copy"><h2 class="section-title display-heading">ЗА КАДРОМ — LERCHIKART.</h2><p>Я AI-креатор и визуальный автор.</p><p>Мой путь в визуальном искусстве начался с фотографии. Шесть лет работы с камерой научили меня видеть свет, композицию, эмоции и детали, из которых складывается сильный кадр.</p><p>Сегодня я переношу этот опыт в AI-продакшен — создаю рекламные фильмы, визуальные концепции и истории, в которых технологии становятся инструментом для воплощения идей.</p><p>Для меня важно не просто создать красивую картинку, а сделать визуал, у которого есть характер.</p></div><div class="portrait-placeholder" role="img" aria-label="Место для будущего портрета"><span>ЗДЕСЬ БУДЕТ МОЁ ФОТО</span></div></div></div></section>
+
+<section class="section" id="contact" style="padding-bottom: 54px;">
+    <div class="container">
+      <div class="contact-wrap">
+        <div class="contact-grid">
+          <div class="contact-left">
+            <div class="section-tag">Контакты</div>
+            <h2 class="section-title">Готова к брендовым кейсам, коллаборациям и коммерческим проектам</h2>
+            <p class="text" style="margin-top: 18px;">
+              Для обсуждения проекта, серии роликов, визуальной упаковки бренда или рекламной кампании — пиши в Telegram или на почту.
+            </p>
+          </div>
+          <div class="contact-right">
+            <div class="contact-card">
+              <strong>Telegram</strong>
+              <a href="https://t.me/lerchikart" target="_blank">@lerchikart</a>
+            </div>
+            <div class="contact-card">
+              <strong>Email</strong>
+              <a href="mailto:lerochka2223@gmail.com">lerochka2223@gmail.com</a>
+            </div>
+            <div class="footnote">
+              Чтобы поменять тексты, ссылки, кейсы или видео, просто редактируй файл <strong>index.html</strong> и обновляй сайт через GitHub.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <dialog class="video-modal" id="videoModal" aria-label="Просмотр видео"><button type="button" class="modal-close" aria-label="Закрыть">×</button><iframe title="Видео Rutube" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></dialog>
+  <script>
+    (() => {
+      const cards = [...document.querySelectorAll('.video-card[data-video]')];
+      const modal = document.getElementById('videoModal');
+      const modalFrame = modal.querySelector('iframe');
+      const close = () => { modalFrame.removeAttribute('src'); modal.close(); };
+      modal.querySelector('.modal-close').addEventListener('click', close);
+      modal.addEventListener('click', e => { if(e.target === modal) close(); });
+      modal.addEventListener('close', () => modalFrame.removeAttribute('src'));
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => { b.classList.toggle('active', b===btn); b.setAttribute('aria-pressed',String(b===btn)); });
+        cards.forEach(card => { card.hidden = btn.dataset.filter !== 'all' && card.dataset.category !== btn.dataset.filter; card.dispatchEvent(new Event('mouseleave')); });
+      }));
+      const hoverEnabled = matchMedia('(hover:hover) and (pointer:fine)').matches;
+      cards.forEach(card => {
+        const preview = card.querySelector('.video-preview'), id = card.dataset.video;
+        let frame, delay;
+        const stop = () => { clearTimeout(delay); if(frame){frame._cleanup?.();frame.remove();frame=null;} };
+        if(hoverEnabled) {
+          card.addEventListener('mouseenter', () => {
+            delay = setTimeout(() => {
+              if(card.hidden || frame) return;
+              frame = document.createElement('iframe');
+              frame.className = 'hover-player';
+              frame.title = 'Предпросмотр без звука';
+              frame.setAttribute('allow','autoplay');
+              frame.src = 'https://rutube.ru/play/embed/' + id + '/?autoplay=true';
+              preview.appendChild(frame);
+              const muteOnReady = event => {
+                if(event.origin !== 'https://rutube.ru' || event.source !== frame?.contentWindow) return;
+                let message; try { message = typeof event.data === 'string' ? JSON.parse(event.data) : event.data; } catch { return; }
+                if(message?.type === 'player:ready' || message?.type === 'player:init') {
+                  frame.contentWindow.postMessage(JSON.stringify({type:'player:mute',data:{}}),'https://rutube.ru');
+                  frame.contentWindow.postMessage(JSON.stringify({type:'player:play',data:{}}),'https://rutube.ru');
+                }
+              };
+              window.addEventListener('message',muteOnReady);
+              frame.addEventListener('load', () => { frame.contentWindow?.postMessage(JSON.stringify({type:'player:mute',data:{}}),'https://rutube.ru'); },{once:true});
+              frame._cleanup = () => window.removeEventListener('message',muteOnReady);
+            }, 250);
+          });
+          card.addEventListener('mouseleave', stop);
+        }
+        preview.addEventListener('click', () => {
+          stop();
+          modalFrame.src = 'https://rutube.ru/play/embed/' + id + '/?autoplay=1';
+          if(typeof modal.showModal === 'function') modal.showModal();
+          else window.open('https://rutube.ru/video/' + id + '/', '_blank', 'noopener');
+        });
+      });
+    })();
+  </script>
+
+<script>
+(()=>{const el=document.getElementById('typingText');if(!el)return;const phrases=['Рекламные ролики','Имиджевые видео','Продуктовая реклама','Анимация','AI-визуал'];if(matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=phrases.join(' / ');return;}let i=0,n=phrases[0].length,back=true;function tick(){const word=phrases[i];el.textContent=word.slice(0,n);if(back){if(n>0){n--;setTimeout(tick,40);}else{back=false;i=(i+1)%phrases.length;setTimeout(tick,300);}}else{const next=phrases[i];if(n<next.length){n++;setTimeout(tick,75);}else{back=true;setTimeout(tick,1700);}}}setTimeout(tick,1800);})();
+</script>
+</body>
+</html>  <section class="section" id="portfolio">
+    <div class="container">
+      <div class="section-tag">Портфолио</div>
+      <h2 class="section-title">Видеопортфолио</h2>
+      <div class="portfolio-intro">
+        Реклама, музыкальные клипы и анимация. Наведи курсор для предпросмотра, нажми для просмотра со звуком.
+      </div>
+
+      <div class="portfolio-filters" role="group" aria-label="Категории портфолио">
+        <button class="filter-btn active" data-filter="all" aria-pressed="true">Все работы</button>
+        <button class="filter-btn" data-filter="advertising" aria-pressed="false">Реклама</button>
+        <button class="filter-btn" data-filter="clips" aria-pressed="false">Клипы</button>
+        <button class="filter-btn" data-filter="animation" aria-pressed="false">Анимация</button>
+      </div>
+      <div class="videos-grid">
+        <article class="video-card is-horizontal" data-category="advertising" data-video="4cd918a012f70f5846342129da19a652">
+          <button class="video-preview" type="button" aria-label="Смотреть DAYDESIGN со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/4cd918a012f70f5846342129da19a652/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-horizontal" data-category="advertising" data-video="0d4868dabbe2eacbc01674e4a41b4559">
+          <button class="video-preview" type="button" aria-label="Смотреть Fashion Jewelry со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/0d4868dabbe2eacbc01674e4a41b4559/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-vertical" data-category="advertising" data-video="36c132823bd6db5c8656bc3e595c5f12">
+          <button class="video-preview" type="button" aria-label="Смотреть Demix со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/36c132823bd6db5c8656bc3e595c5f12/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-horizontal" data-category="advertising" data-video="58b73e8eaa1809f49542697c51b6b494">
+          <button class="video-preview" type="button" aria-label="Смотреть Напиток со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/58b73e8eaa1809f49542697c51b6b494/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-vertical" data-category="advertising" data-video="0ab3d7e10c955df4e7a4efa998f07b03">
+          <button class="video-preview" type="button" aria-label="Смотреть MIRALU — Вне времени со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/0ab3d7e10c955df4e7a4efa998f07b03/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-horizontal" data-category="advertising" data-video="cda475a3effa89f1465334390269f298">
+          <button class="video-preview" type="button" aria-label="Смотреть Мороженое со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/cda475a3effa89f1465334390269f298/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-horizontal" data-category="advertising" data-video="e972cc393bf06b30601ce3a68d0517a0">
+          <button class="video-preview" type="button" aria-label="Смотреть Фильм в поддержку Леры со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/e972cc393bf06b30601ce3a68d0517a0/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-vertical" data-category="animation" data-video="cb1e187c72b6d2c707158d5568bee69a">
+          <button class="video-preview" type="button" aria-label="Смотреть MIRALU — Stop Motion со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/cb1e187c72b6d2c707158d5568bee69a/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-vertical" data-category="animation" data-video="ccd9613e2651fcec200b169838c85029">
+          <button class="video-preview" type="button" aria-label="Смотреть SAKHALIN со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/ccd9613e2651fcec200b169838c85029/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-horizontal" data-category="clips" data-video="cd2437f916127828cbc3b176d2f4a0ce">
+          <button class="video-preview" type="button" aria-label="Смотреть Клип певицы со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/cd2437f916127828cbc3b176d2f4a0ce/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+        <article class="video-card is-horizontal" data-category="clips" data-video="08f142d539c1335a823d1b1bcd1ba4c1">
+          <button class="video-preview" type="button" aria-label="Смотреть Авторский клип к 9 Мая со звуком">
+            <img class="video-poster" src="https://rutube.ru/api/video/08f142d539c1335a823d1b1bcd1ba4c1/thumbnail/?redirect=1" loading="lazy" alt="" onerror="this.style.display='none'">
+            <span class="preview-shade"></span><span class="preview-play">▶</span>
+          </button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+<section class="closing-section" id="contact"><div class="container"><div class="section-tag">08 / LET'S CREATE</div><h2>ЕСТЬ ИДЕЯ?<br>ДАВАЙ ПРЕВРАТИМ<br>ЕЁ В КАДРЫ.</h2><p>Расскажи о проекте — обсудим концепцию, формат и возможности реализации.</p><div class="closing-links"><a href="https://t.me/lerchikart" target="_blank" rel="noopener">НАПИСАТЬ В TELEGRAM ↗</a><a href="mailto:lerochka2223@gmail.com">EMAIL ↗</a></div><div class="site-footer"><span>LERCHIKART © 2026</span><span>AI CREATOR & VISUAL DIRECTOR</span></div></div></section>
+  <dialog class="video-modal" id="videoModal" aria-label="Просмотр видео"><button type="button" class="modal-close" aria-label="Закрыть">×</button><iframe title="Видео Rutube" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></dialog>
+  <script>
+    (() => {
+      const cards = [...document.querySelectorAll('.video-card[data-video]')];
+      const modal = document.getElementById('videoModal');
+      const modalFrame = modal.querySelector('iframe');
+      const close = () => { modalFrame.removeAttribute('src'); modal.close(); };
+      modal.querySelector('.modal-close').addEventListener('click', close);
+      modal.addEventListener('click', e => { if(e.target === modal) close(); });
+      modal.addEventListener('close', () => modalFrame.removeAttribute('src'));
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => { b.classList.toggle('active', b===btn); b.setAttribute('aria-pressed',String(b===btn)); });
+        cards.forEach(card => { card.hidden = btn.dataset.filter !== 'all' && card.dataset.category !== btn.dataset.filter; card.dispatchEvent(new Event('mouseleave')); });
+      }));
+      const hoverEnabled = matchMedia('(hover:hover) and (pointer:fine)').matches;
+      cards.forEach(card => {
+        const preview = card.querySelector('.video-preview'), id = card.dataset.video;
+        let frame, delay;
+        const stop = () => { clearTimeout(delay); if(frame){frame._cleanup?.();frame.remove();frame=null;} };
+        if(hoverEnabled) {
+          card.addEventListener('mouseenter', () => {
+            delay = setTimeout(() => {
+              if(card.hidden || frame) return;
+              frame = document.createElement('iframe');
+              frame.className = 'hover-player';
+              frame.title = 'Предпросмотр без звука';
+              frame.setAttribute('allow','autoplay');
+              frame.src = 'https://rutube.ru/play/embed/' + id + '/?autoplay=true';
+              preview.appendChild(frame);
+              const muteOnReady = event => {
+                if(event.origin !== 'https://rutube.ru' || event.source !== frame?.contentWindow) return;
+                let message; try { message = typeof event.data === 'string' ? JSON.parse(event.data) : event.data; } catch { return; }
+                if(message?.type === 'player:ready' || message?.type === 'player:init') {
+                  frame.contentWindow.postMessage(JSON.stringify({type:'player:mute',data:{}}),'https://rutube.ru');
+                  frame.contentWindow.postMessage(JSON.stringify({type:'player:play',data:{}}),'https://rutube.ru');
+                }
+              };
+              window.addEventListener('message',muteOnReady);
+              frame.addEventListener('load', () => { frame.contentWindow?.postMessage(JSON.stringify({type:'player:mute',data:{}}),'https://rutube.ru'); },{once:true});
+              frame._cleanup = () => window.removeEventListener('message',muteOnReady);
+            }, 250);
+          });
+          card.addEventListener('mouseleave', stop);
+        }
+        preview.addEventListener('click', () => {
+          stop();
+          modalFrame.src = 'https://rutube.ru/play/embed/' + id + '/?autoplay=1';
+          if(typeof modal.showModal === 'function') modal.showModal();
+          else window.open('https://rutube.ru/video/' + id + '/', '_blank', 'noopener');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>  <section class="section" id="portfolio">
     <div class="container">
       <div class="section-tag">Портфолио</div>
       <h2 class="section-title">Видеопортфолио</h2>
