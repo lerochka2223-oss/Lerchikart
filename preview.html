@@ -730,6 +730,22 @@ body { font-family:'Playfair Display',serif; }
 @media(max-width:760px) {
   #about .creator-portrait { width:min(100%,360px); max-width:360px; margin-inline:auto; }
 }
+
+/* Expertise: cinematic video showcase placeholders; no external video files yet */
+#services .expertise-showcase{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:44px}
+#services .expertise-tile{min-width:0;background:#111112;border:1px solid rgba(225,211,189,.13);border-radius:18px;overflow:hidden;transition:border-color .3s ease,transform .3s ease}
+#services .expertise-tile:hover{border-color:rgba(201,153,90,.5);transform:translateY(-3px)}
+#services .expertise-tile.wide{grid-column:1/-1}
+#services .expertise-media{position:relative;min-height:230px;aspect-ratio:4/3;background:linear-gradient(135deg,#302a27 0%,#161617 44%,#25201d 72%,#111112 100%);overflow:hidden}
+#services .expertise-tile.wide .expertise-media{aspect-ratio:21/7;min-height:250px}
+#services .expertise-media:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 70% 35%,rgba(184,137,88,.18),transparent 42%),linear-gradient(115deg,transparent 35%,rgba(235,214,179,.055) 49%,transparent 60%);pointer-events:none}
+#services .expertise-media-label{position:absolute;bottom:20px;left:24px;font:600 11px Arial,Helvetica,sans-serif;letter-spacing:.2em;color:rgba(236,223,204,.53)}
+#services .expertise-copy{padding:23px 27px 29px}
+#services .expertise-number{display:block;color:var(--accent);font:600 12px Arial,Helvetica,sans-serif;letter-spacing:.12em;margin-bottom:12px}
+#services .expertise-copy h3{font-family:'Playfair Display',serif;color:var(--text);font-size:clamp(23px,2.1vw,31px);line-height:1.25;margin:0 0 12px}
+#services .expertise-copy p{font:15px/1.7 Arial,Helvetica,sans-serif;color:var(--muted);max-width:760px;margin:0}
+@media(max-width:760px){#services .expertise-showcase{grid-template-columns:1fr;gap:16px;margin-top:32px}#services .expertise-tile.wide{grid-column:auto}#services .expertise-media,#services .expertise-tile.wide .expertise-media{aspect-ratio:16/10;min-height:170px}#services .expertise-copy{padding:19px 20px 23px}#services .expertise-copy h3{font-size:23px}#services .expertise-copy p{font-size:14px}}
+@media(prefers-reduced-motion:reduce){#services .expertise-tile{transition:none}#services .expertise-tile:hover{transform:none}}
 </style>
 </head>
 <body>
@@ -823,12 +839,10 @@ body { font-family:'Playfair Display',serif; }
 
   
 <section class="statement-block" id="vision"><div class="container"><div class="section-tag">03 / CREATIVE FREEDOM</div><h2>ИДЕИ БОЛЬШЕ НЕ ОГРАНИЧЕНЫ ВОЗМОЖНОСТЯМИ СЪЁМКИ.</h2><p>AI открывает новые способы создавать визуальные истории — от реалистичных рекламных сцен до миров, которые существуют только в воображении.</p></div></section>
-<section class="section content-section" id="services"><div class="container"><div class="section-tag">04 / EXPERTISE</div><h2 class="section-title display-heading">ОТ ИДЕИ ДО ФИНАЛЬНОГО КАДРА.</h2><div class="service-list">
-<div class="service-row"><span>01</span><div><h3>РЕКЛАМНЫЕ РОЛИКИ</h3><p>Видеореклама продуктов и брендов для digital-площадок, социальных сетей и рекламных кампаний.</p></div></div>
-<div class="service-row"><span>02</span><div><h3>ИМИДЖЕВЫЕ ФИЛЬМЫ</h3><p>Атмосферные визуальные истории, раскрывающие характер, эстетику и ценности бренда.</p></div></div>
-<div class="service-row"><span>03</span><div><h3>ПРОДУКТОВЫЙ AI-ВИЗУАЛ</h3><p>Предметные сцены, fashion и beauty-контент с вниманием к материалам, свету и деталям.</p></div></div>
-<div class="service-row"><span>04</span><div><h3>КЛИПЫ И АНИМАЦИЯ</h3><p>Музыкальные видео, стилизованная анимация и экспериментальные визуальные форматы.</p></div></div>
-</div></div></section>
+<section class="section content-section" id="services"><div class="container"><div class="section-tag">04 / EXPERTISE</div><h2 class="section-title display-heading">ОТ ИДЕИ ДО ФИНАЛЬНОГО КАДРА.</h2><div class="expertise-showcase"><article class="expertise-tile wide"><div class="expertise-media" aria-hidden="true"><span class="expertise-media-label">VIDEO PREVIEW / 01</span></div><div class="expertise-copy"><span class="expertise-number">01 /</span><h3>РЕКЛАМНЫЕ РОЛИКИ</h3><p>Видеореклама продуктов и брендов для digital-площадок, социальных сетей и рекламных кампаний.</p></div></article>
+<article class="expertise-tile "><div class="expertise-media" aria-hidden="true"><span class="expertise-media-label">VIDEO PREVIEW / 02</span></div><div class="expertise-copy"><span class="expertise-number">02 /</span><h3>ИМИДЖЕВЫЕ ФИЛЬМЫ</h3><p>Атмосферные визуальные истории, раскрывающие характер, эстетику и ценности бренда.</p></div></article>
+<article class="expertise-tile "><div class="expertise-media" aria-hidden="true"><span class="expertise-media-label">VIDEO PREVIEW / 03</span></div><div class="expertise-copy"><span class="expertise-number">03 /</span><h3>ПРОДУКТОВЫЙ AI-ВИЗУАЛ</h3><p>Предметные сцены, fashion и beauty-контент с вниманием к материалам, свету и деталям.</p></div></article>
+<article class="expertise-tile wide"><div class="expertise-media" aria-hidden="true"><span class="expertise-media-label">VIDEO PREVIEW / 04</span></div><div class="expertise-copy"><span class="expertise-number">04 /</span><h3>КЛИПЫ И АНИМАЦИЯ</h3><p>Музыкальные видео, стилизованная анимация и экспериментальные визуальные форматы.</p></div></article></div></div></section>
 <section class="section content-section" id="approach"><div class="container"><div class="section-tag">05 / THE APPROACH</div><h2 class="section-title display-heading">ИДЕЯ ВАЖНЕЕ ИНСТРУМЕНТА.</h2><p class="approach-lead">Для меня AI — способ воплотить визуальную идею, а не заменить творческий процесс.</p><div class="approach-principles">
 <div class="approach-principle"><span class="approach-index">01 /</span><h3>РЕЖИССЁРСКИЙ ПОДХОД</h3><p>Каждый проект начинается с идеи. Я продумываю композицию, последовательность кадров, настроение и визуальный язык.</p></div>
 <div class="approach-principle"><span class="approach-index">02 /</span><h3>ВНИМАНИЕ К ДЕТАЛЯМ</h3><p>Реалистичная фактура, свет, движение и точность передачи продукта — всё работает на целостность изображения.</p></div>
