@@ -849,16 +849,13 @@ radial-gradient(ellipse 72vw 34vh at var(--glow-x2,25%) var(--glow-y2,72%),rgba(
 .new-hero .hero-bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;display:block}
 @media(max-width:760px){.new-hero .hero-bg-video{object-position:56% center}.new-hero .hero-video-bg::after{background:linear-gradient(90deg,rgba(0,0,0,.65),rgba(0,0,0,.4)),rgba(0,0,0,.16)}}
 
-/* Temporary Nox scroll-motion prototype */
-#nox-scroll-test{position:fixed;left:0;top:0;width:clamp(330px,38vw,620px);aspect-ratio:16/9;z-index:1;pointer-events:none;opacity:0;transform:translate3d(-300px,-300px,0);transition:opacity .35s ease;mix-blend-mode:normal;overflow:hidden}
+/* Nox: scroll-controlled passes across section 05 only */
+#approach{isolation:isolate}
+#approach>.container{position:relative;z-index:2}
+#nox-scroll-test{position:fixed;left:0;top:0;width:clamp(390px,43vw,740px);aspect-ratio:16/9;z-index:0;pointer-events:none;opacity:0;visibility:hidden;transform:translate3d(-100vw,0,0);overflow:hidden;will-change:transform}
 #nox-scroll-test video{width:100%;height:100%;object-fit:contain;display:block}
-@media(max-width:760px){#nox-scroll-test{width:min(82vw,420px)}}
+@media(max-width:760px){#nox-scroll-test{width:min(95vw,500px)}}
 @media(prefers-reduced-motion:reduce){#nox-scroll-test{display:none}}
-
-/* Nox is ambient scenery behind all section content, never above text or controls */
-body>.section,body>section:not(.hero){position:relative;z-index:2}
-body>.section>.container,body>section:not(.hero)>.container{position:relative;z-index:2}
-#nox-scroll-test{z-index:1}
 </style>
 </head>
 <body>
@@ -965,7 +962,7 @@ body>.section>.container,body>section:not(.hero)>.container{position:relative;z-
 <article class="expertise-tile "><div class="expertise-media" aria-hidden="true"><span class="expertise-media-label">VIDEO PREVIEW / 02</span></div><div class="expertise-copy"><span class="expertise-number">02 /</span><h3>ИМИДЖЕВЫЕ ФИЛЬМЫ</h3><p>Атмосферные визуальные истории, раскрывающие характер, эстетику и ценности бренда.</p></div></article>
 <article class="expertise-tile "><div class="expertise-media" aria-hidden="true"><span class="expertise-media-label">VIDEO PREVIEW / 03</span></div><div class="expertise-copy"><span class="expertise-number">03 /</span><h3>ПРОДУКТОВЫЙ AI-ВИЗУАЛ</h3><p>Предметные сцены, fashion и beauty-контент с вниманием к материалам, свету и деталям.</p></div></article>
 <article class="expertise-tile wide"><div class="expertise-media" aria-hidden="true"><span class="expertise-media-label">VIDEO PREVIEW / 04</span></div><div class="expertise-copy"><span class="expertise-number">04 /</span><h3>КЛИПЫ И АНИМАЦИЯ</h3><p>Музыкальные видео, стилизованная анимация и экспериментальные визуальные форматы.</p></div></article></div></div></section>
-<section class="section content-section" id="approach"><div class="container"><div class="section-tag">05 / THE APPROACH</div><h2 class="section-title display-heading">ИДЕЯ ВАЖНЕЕ ИНСТРУМЕНТА.</h2><p class="approach-lead">AI расширяет возможности визуального производства: от реалистичных рекламных сцен до миров, существующих только в воображении. Для меня это инструмент воплощения идеи, а не замена творческому процессу.</p><div class="approach-principles">
+<section class="section content-section" id="approach"><div id="nox-scroll-test" aria-hidden="true"><video muted playsinline preload="auto"><source src="nox-alpha-site.webm" type="video/webm"></video></div><div class="container"><div class="section-tag">05 / THE APPROACH</div><h2 class="section-title display-heading">ИДЕЯ ВАЖНЕЕ ИНСТРУМЕНТА.</h2><p class="approach-lead">AI расширяет возможности визуального производства: от реалистичных рекламных сцен до миров, существующих только в воображении. Для меня это инструмент воплощения идеи, а не замена творческому процессу.</p><div class="approach-principles">
 <div class="approach-principle"><span class="approach-index">01 /</span><h3>РЕЖИССЁРСКИЙ ПОДХОД</h3><p>Каждый проект начинается с идеи. Я продумываю композицию, последовательность кадров, настроение и визуальный язык.</p></div>
 <div class="approach-principle"><span class="approach-index">02 /</span><h3>ВНИМАНИЕ К ДЕТАЛЯМ</h3><p>Реалистичная фактура, свет, движение и точность передачи продукта — всё работает на целостность изображения.</p></div>
 <div class="approach-principle"><span class="approach-index">03 /</span><h3>СВОБОДА РЕАЛИЗАЦИИ</h3><p>Создаю сцены и визуальные концепции, для которых традиционная съёмка потребовала бы сложных декораций, локаций и производства.</p></div>
@@ -1093,39 +1090,45 @@ body>.section>.container,body>section:not(.hero)>.container{position:relative;z-
 <script>
 (()=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;let ticking=false;function drift(){ticking=false;const max=Math.max(1,document.documentElement.scrollHeight-innerHeight),p=Math.min(1,Math.max(0,scrollY/max)),t=p*Math.PI*2;const vars={'--glow-x':(62+23*Math.sin(t*1.6+.5))+'%','--glow-y':(41+23*Math.cos(t*1.1))+'%','--glow-x2':(30+23*Math.cos(t*1.35+.8))+'%','--glow-y2':(64+22*Math.sin(t*1.4+1.1))+'%','--glow-x3':(77+14*Math.sin(t*1.8+2))+'%','--glow-y3':(76+15*Math.cos(t*1.2+1))+'%'};for(const [key,val] of Object.entries(vars))document.body.style.setProperty(key,val)}addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(drift)}},{passive:true});addEventListener('resize',drift);drift()})();
 </script>
-<div id="nox-scroll-test" aria-hidden="true"><video muted playsinline preload="auto"><source src="nox-alpha-site.webm" type="video/webm"></video></div>
 <script>
-/* Scroll-scrubbed Nox: no autoplay. Both position and animation frame follow scroll. */
-(()=>{const el=document.getElementById('nox-scroll-test');const video=el&&el.querySelector('video');if(!video||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-let scheduled=false, lastY=scrollY,travel=0;
-video.pause();video.addEventListener('play',()=>video.pause());
-function render(){
- scheduled=false;
- const y=scrollY,delta=y-lastY;lastY=y;
- const section4=document.getElementById("services");const start=section4?section4.getBoundingClientRect().top+scrollY:innerHeight*3;const end=Math.max(start+1,document.documentElement.scrollHeight-innerHeight*1.35);
- const active=y+innerHeight*.55>=start&&y<end;
- el.style.opacity=active?'1':'0';
- if(!active)return;
- const p=Math.max(0,Math.min(1,(y-start)/(end-start)));
- const width=el.getBoundingClientRect().width,height=el.getBoundingClientRect().height;
- const px=(innerWidth-width)*(.08+.80*(.5+.5*Math.sin(p*Math.PI*3.3-.8)));
- const py=(innerHeight-height)*(.15+.72*(.5+.5*Math.cos(p*Math.PI*2.6+.5)));
- el.style.transform='translate3d('+Math.round(px)+'px,'+Math.round(py)+'px,0)';
- // Distance through the page advances or reverses the actual video frames.
- // Video never plays on its own while the visitor is idle.
- const duration=video.duration;
- if(Number.isFinite(duration)&&duration>.1){
-  const cyclePx=800;
-  const frame=((y-start)/cyclePx*duration)%(duration-.06);
-  const time=Math.max(0,Math.min(duration-.07,frame<0?frame+duration-.06:frame));
-  if(Math.abs(video.currentTime-time)>.025)video.currentTime=time;
+/* Nox crosses section 05 twice, strictly controlled by scrolling (no autoplay). */
+(()=>{
+ const section=document.getElementById('approach');
+ const el=document.getElementById('nox-scroll-test');
+ const video=el&&el.querySelector('video');
+ if(!section||!video||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ let queued=false;
+ video.pause();
+ video.addEventListener('play',()=>video.pause());
+ function render(){
+  queued=false;
+  const rect=section.getBoundingClientRect();
+  const visible=rect.bottom>innerHeight*.18&&rect.top<innerHeight*.82;
+  el.style.visibility=visible?'visible':'hidden';
+  el.style.opacity=visible?'1':'0';
+  if(!visible)return;
+  // The scroll distance while the section crosses the viewport.
+  const span=Math.max(1,rect.height+innerHeight*.64);
+  const progress=Math.max(0,Math.min(1,(innerHeight*.82-rect.top)/span));
+  const laps=2;
+  const phase=(progress*laps)%1;
+  const width=el.getBoundingClientRect().width;
+  // Cross from completely outside the left edge to completely outside the right edge.
+  const x=-width+(innerWidth+width*2)*phase;
+  const y=Math.max(20,Math.min(innerHeight-el.getBoundingClientRect().height-15,innerHeight*.12));
+  el.style.transform='translate3d('+Math.round(x)+'px,'+Math.round(y)+'px,0)';
+  // Scrub the actual video frames with the same progress; stop scrolling = freeze.
+  const duration=video.duration;
+  if(Number.isFinite(duration)&&duration>.12){
+   const target=Math.min(duration-.08,phase*(duration-.08));
+   if(Math.abs(video.currentTime-target)>.025)video.currentTime=target;
+  }
  }
-}
-function schedule(){if(!scheduled){scheduled=true;requestAnimationFrame(render)}}
-video.addEventListener('loadedmetadata',schedule);
-addEventListener('scroll',schedule,{passive:true});
-addEventListener('resize',schedule);
-schedule();
+ function queue(){if(!queued){queued=true;requestAnimationFrame(render)}}
+ video.addEventListener('loadedmetadata',queue);
+ addEventListener('scroll',queue,{passive:true});
+ addEventListener('resize',queue);
+ queue();
 })();
 </script>
 </body>
