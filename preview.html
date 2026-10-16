@@ -1088,9 +1088,40 @@ radial-gradient(ellipse 72vw 34vh at var(--glow-x2,25%) var(--glow-y2,72%),rgba(
 <script>
 (()=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;let ticking=false;function drift(){ticking=false;const max=Math.max(1,document.documentElement.scrollHeight-innerHeight),p=Math.min(1,Math.max(0,scrollY/max)),t=p*Math.PI*2;const vars={'--glow-x':(62+23*Math.sin(t*1.6+.5))+'%','--glow-y':(41+23*Math.cos(t*1.1))+'%','--glow-x2':(30+23*Math.cos(t*1.35+.8))+'%','--glow-y2':(64+22*Math.sin(t*1.4+1.1))+'%','--glow-x3':(77+14*Math.sin(t*1.8+2))+'%','--glow-y3':(76+15*Math.cos(t*1.2+1))+'%'};for(const [key,val] of Object.entries(vars))document.body.style.setProperty(key,val)}addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(drift)}},{passive:true});addEventListener('resize',drift);drift()})();
 </script>
-<div id="nox-scroll-test" aria-hidden="true"><video autoplay muted loop playsinline preload="auto"><source src="nox-alpha-site.webm" type="video/webm"></video></div>
+<div id="nox-scroll-test" aria-hidden="true"><video muted playsinline preload="auto"><source src="nox-alpha-site.webm" type="video/webm"></video></div>
 <script>
-(()=>{const el=document.getElementById('nox-scroll-test');if(!el||matchMedia('(prefers-reduced-motion: reduce)').matches)return;let x=-300,y=-300,tx=-300,ty=-300,visible=false;function tick(){const max=Math.max(1,document.documentElement.scrollHeight-innerHeight),p=Math.max(0,Math.min(1,scrollY/max));const active=scrollY>innerHeight*.75&&scrollY<max-innerHeight*.25;el.style.opacity=active?'1':'0';const w=innerWidth,h=innerHeight;tx=w*(.1+.72*(.5+.5*Math.sin(p*12.5)));ty=h*(.25+.53*(.5+.5*Math.cos(p*10.5)));if(!visible&&active){x=tx;y=ty}visible=active;x+=(tx-x)*.11;y+=(ty-y)*.11;el.style.transform='translate3d('+Math.round(x)+'px,'+Math.round(y)+'px,0)';requestAnimationFrame(tick)}requestAnimationFrame(tick)})();
+/* Scroll-scrubbed Nox: no autoplay. Both position and animation frame follow scroll. */
+(()=>{const el=document.getElementById('nox-scroll-test');const video=el&&el.querySelector('video');if(!video||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+let scheduled=false, lastY=scrollY,travel=0;
+video.pause();video.addEventListener('play',()=>video.pause());
+function render(){
+ scheduled=false;
+ const y=scrollY,delta=y-lastY;lastY=y;
+ const start=innerHeight*.82,end=Math.max(start+1,document.documentElement.scrollHeight-innerHeight*1.35);
+ const active=y>start&&y<end;
+ el.style.opacity=active?'1':'0';
+ if(!active)return;
+ const p=Math.max(0,Math.min(1,(y-start)/(end-start)));
+ const width=el.getBoundingClientRect().width,height=el.getBoundingClientRect().height;
+ const px=(innerWidth-width)*(.08+.80*(.5+.5*Math.sin(p*Math.PI*3.3-.8)));
+ const py=(innerHeight-height)*(.15+.72*(.5+.5*Math.cos(p*Math.PI*2.6+.5)));
+ el.style.transform='translate3d('+Math.round(px)+'px,'+Math.round(py)+'px,0)';
+ // Distance through the page advances or reverses the actual video frames.
+ // Video never plays on its own while the visitor is idle.
+ const duration=video.duration;
+ if(Number.isFinite(duration)&&duration>.1){
+  const cyclePx=800;
+  const frame=((y-start)/cyclePx*duration)%(duration-.06);
+  const time=Math.max(0,Math.min(duration-.07,frame<0?frame+duration-.06:frame));
+  if(Math.abs(video.currentTime-time)>.025)video.currentTime=time;
+ }
+}
+function schedule(){if(!scheduled){scheduled=true;requestAnimationFrame(render)}}
+video.addEventListener('loadedmetadata',schedule);
+addEventListener('scroll',schedule,{passive:true});
+addEventListener('resize',schedule);
+schedule();
+})();
 </script>
 </body>
 </html>
