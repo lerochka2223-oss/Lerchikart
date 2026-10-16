@@ -822,6 +822,15 @@ body{
 #stills .stills-hint{font:12px Arial,sans-serif;color:#948a81;margin-top:12px}
 @media(max-width:900px){#stills .still-card{flex-basis:calc((100% - 24px)/2.3)}}
 @media(max-width:600px){#stills .still-card{flex-basis:78%}#stills .stills-toolbar{align-items:flex-start}#stills .stills-filters{gap:7px}#stills .stills-filter{font-size:11px;padding:9px 11px}}
+
+/* Scroll-responsive ambient bronze light across the whole page */
+html{background:#09090a}
+body{background:linear-gradient(180deg,#0a090a 0%,#100d0d 42%,#09090b 100%)!important}
+body::before{content:"";position:fixed;inset:-12vh -15vw;z-index:0;pointer-events:none;background:radial-gradient(ellipse 45vw 47vh at var(--glow-x,78%) var(--glow-y,44%),rgba(181,113,68,.23) 0%,rgba(124,80,53,.13) 36%,transparent 75%),radial-gradient(ellipse 32vw 38vh at calc(100% - var(--glow-x,78%)) 85%,rgba(128,91,66,.09),transparent 80%);transition:background-position .4s ease;opacity:.96}
+body>*{position:relative;z-index:1}
+.site-header{z-index:50}
+@media(max-width:760px){body::before{background:radial-gradient(ellipse 85vw 40vh at var(--glow-x,70%) var(--glow-y,40%),rgba(181,113,68,.19),transparent 78%)}}
+@media(prefers-reduced-motion:reduce){body::before{background:radial-gradient(ellipse 55vw 50vh at 75% 45%,rgba(181,113,68,.15),transparent 78%)}}
 </style>
 </head>
 <body>
@@ -1049,6 +1058,9 @@ body{
 </script>
 <script>
 (()=>{const root=document.getElementById('stills');if(!root)return;const track=root.querySelector('.stills-track'),cards=[...root.querySelectorAll('.still-card')],buttons=[...root.querySelectorAll('[data-still-filter]')],prev=root.querySelector('[data-still-prev]'),next=root.querySelector('[data-still-next]');function update(){prev.disabled=track.scrollLeft<5;next.disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-5;}buttons.forEach(btn=>btn.addEventListener('click',()=>{const category=btn.dataset.stillFilter;buttons.forEach(b=>{const active=b===btn;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});cards.forEach(card=>card.hidden=category!=='all'&&card.dataset.stillCategory!==category);track.scrollLeft=0;requestAnimationFrame(update);}));function step(dir){const visible=cards.find(c=>!c.hidden);if(!visible)return;track.scrollBy({left:dir*(visible.getBoundingClientRect().width+16),behavior:'smooth'});}prev.addEventListener('click',()=>step(-1));next.addEventListener('click',()=>step(1));track.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update);update();})();
+</script>
+<script>
+(()=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;let pending=false;function moveGlow(){pending=false;const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);const progress=Math.min(1,Math.max(0,scrollY/max));const x=52+28*Math.sin(progress*Math.PI*3.2+0.8);const y=35+22*Math.cos(progress*Math.PI*4.1);document.body.style.setProperty('--glow-x',x.toFixed(1)+'%');document.body.style.setProperty('--glow-y',y.toFixed(1)+'%');}addEventListener('scroll',()=>{if(!pending){pending=true;requestAnimationFrame(moveGlow)}},{passive:true});addEventListener('resize',moveGlow);moveGlow()})();
 </script>
 </body>
 </html>
