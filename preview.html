@@ -963,7 +963,7 @@ radial-gradient(ellipse 72vw 34vh at var(--glow-x2,25%) var(--glow-y2,72%),rgba(
 <article class="expertise-tile "><div class="expertise-media" aria-hidden="true"><span class="expertise-media-label">VIDEO PREVIEW / 02</span></div><div class="expertise-copy"><span class="expertise-number">02 /</span><h3>ИМИДЖЕВЫЕ ФИЛЬМЫ</h3><p>Атмосферные визуальные истории, раскрывающие характер, эстетику и ценности бренда.</p></div></article>
 <article class="expertise-tile "><div class="expertise-media" aria-hidden="true"><span class="expertise-media-label">VIDEO PREVIEW / 03</span></div><div class="expertise-copy"><span class="expertise-number">03 /</span><h3>ПРОДУКТОВЫЙ AI-ВИЗУАЛ</h3><p>Предметные сцены, fashion и beauty-контент с вниманием к материалам, свету и деталям.</p></div></article>
 <article class="expertise-tile wide"><div class="expertise-media" aria-hidden="true"><span class="expertise-media-label">VIDEO PREVIEW / 04</span></div><div class="expertise-copy"><span class="expertise-number">04 /</span><h3>КЛИПЫ И АНИМАЦИЯ</h3><p>Музыкальные видео, стилизованная анимация и экспериментальные визуальные форматы.</p></div></article></div></div></section>
-<section class="section content-section" id="approach"><div id="nox-scroll-test" aria-hidden="true"><video autoplay muted loop playsinline preload="auto"><source src="nox-alpha-site.webm" type="video/webm"></video></div><div class="container"><div class="section-tag">05 / THE APPROACH</div><h2 class="section-title display-heading">ИДЕЯ ВАЖНЕЕ ИНСТРУМЕНТА.</h2><p class="approach-lead">AI расширяет возможности визуального производства: от реалистичных рекламных сцен до миров, существующих только в воображении. Для меня это инструмент воплощения идеи, а не замена творческому процессу.</p><div class="approach-principles">
+<section class="section content-section" id="approach"><div id="nox-scroll-test" aria-hidden="true"><video muted playsinline preload="auto"><source src="nox-alpha-site.webm" type="video/webm"></video></div><div class="container"><div class="section-tag">05 / THE APPROACH</div><h2 class="section-title display-heading">ИДЕЯ ВАЖНЕЕ ИНСТРУМЕНТА.</h2><p class="approach-lead">AI расширяет возможности визуального производства: от реалистичных рекламных сцен до миров, существующих только в воображении. Для меня это инструмент воплощения идеи, а не замена творческому процессу.</p><div class="approach-principles">
 <div class="approach-principle"><span class="approach-index">01 /</span><h3>РЕЖИССЁРСКИЙ ПОДХОД</h3><p>Каждый проект начинается с идеи. Я продумываю композицию, последовательность кадров, настроение и визуальный язык.</p></div>
 <div class="approach-principle"><span class="approach-index">02 /</span><h3>ВНИМАНИЕ К ДЕТАЛЯМ</h3><p>Реалистичная фактура, свет, движение и точность передачи продукта — всё работает на целостность изображения.</p></div>
 <div class="approach-principle"><span class="approach-index">03 /</span><h3>СВОБОДА РЕАЛИЗАЦИИ</h3><p>Создаю сцены и визуальные концепции, для которых традиционная съёмка потребовала бы сложных декораций, локаций и производства.</p></div>
@@ -1092,17 +1092,35 @@ radial-gradient(ellipse 72vw 34vh at var(--glow-x2,25%) var(--glow-y2,72%),rgba(
 (()=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;let ticking=false;function drift(){ticking=false;const max=Math.max(1,document.documentElement.scrollHeight-innerHeight),p=Math.min(1,Math.max(0,scrollY/max)),t=p*Math.PI*2;const vars={'--glow-x':(62+23*Math.sin(t*1.6+.5))+'%','--glow-y':(41+23*Math.cos(t*1.1))+'%','--glow-x2':(30+23*Math.cos(t*1.35+.8))+'%','--glow-y2':(64+22*Math.sin(t*1.4+1.1))+'%','--glow-x3':(77+14*Math.sin(t*1.8+2))+'%','--glow-y3':(76+15*Math.cos(t*1.2+1))+'%'};for(const [key,val] of Object.entries(vars))document.body.style.setProperty(key,val)}addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(drift)}},{passive:true});addEventListener('resize',drift);drift()})();
 </script>
 <script>
-/* Run only while the approach section is on screen; no scroll scrubbing. */
+/* One video cycle per full offscreen-to-offscreen pass; reset only beyond right edge. */
 (()=>{
  const section=document.getElementById('approach');
  const el=document.getElementById('nox-scroll-test');
  const video=el&&el.querySelector('video');
  if(!section||!video)return;
- if(matchMedia('(prefers-reduced-motion: reduce)').matches){video.pause();return}
+ if(matchMedia('(prefers-reduced-motion: reduce)').matches){video.pause();el.style.animationPlayState='paused';return}
+ const passSeconds=11;
+ let active=false;
+ video.loop=false;
+ video.pause();
+ function syncSpeed(){
+  if(Number.isFinite(video.duration)&&video.duration>0){
+   // Finish the source footage just before the character exits the viewport.
+   video.playbackRate=Math.max(.25,Math.min(4,(video.duration-.09)/passSeconds));
+  }
+ }
+ video.addEventListener('loadedmetadata',syncSpeed);
+ el.addEventListener('animationiteration',()=>{
+  // CSS has already moved the character completely beyond the right edge.
+  video.pause();
+  video.currentTime=0;
+  if(active)video.play().catch(()=>{});
+ });
  const observer=new IntersectionObserver(entries=>{
-  const active=entries[0].isIntersecting;
+  active=entries[0].isIntersecting;
   el.style.animationPlayState=active?'running':'paused';
-  if(active)video.play().catch(()=>{});else video.pause();
+  if(active){syncSpeed();video.play().catch(()=>{})}
+  else video.pause();
  },{threshold:0});
  observer.observe(section);
 })();
