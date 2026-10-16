@@ -801,6 +801,27 @@ body{
 #pricing .pricing-note{max-width:800px;font-size:12px;line-height:1.85;color:#aaa09a;margin:25px 0 0}
 @media(max-width:980px){#pricing .pricing-grid{grid-template-columns:1fr 1fr}#pricing .pricing-panel:last-child{grid-column:1/-1}}
 @media(max-width:620px){#pricing .pricing-grid{grid-template-columns:1fr}#pricing .pricing-panel:last-child{grid-column:auto}#pricing .pricing-panel{padding:25px}#pricing .pricing-panel h3{margin-bottom:17px}}
+
+/* Still works: horizontally browsable placeholder gallery */
+#stills .stills-lead{color:var(--muted);max-width:680px;line-height:1.7;margin:0 0 28px}
+#stills .stills-toolbar{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin:0 0 20px}
+#stills .stills-filters{display:flex;gap:9px;flex-wrap:wrap}
+#stills .stills-filter{font:inherit;font-family:Arial,sans-serif;font-size:12px;letter-spacing:.04em;background:transparent;border:1px solid rgba(239,227,211,.25);color:#c7beb2;padding:10px 15px;border-radius:30px;cursor:pointer;transition:.2s}
+#stills .stills-filter.active,#stills .stills-filter:hover{background:#c79564;color:#111;border-color:#c79564}
+#stills .stills-arrows{display:flex;gap:8px}
+#stills .stills-arrow{height:43px;width:43px;border:1px solid rgba(239,227,211,.35);border-radius:50%;background:transparent;color:#efe3d3;cursor:pointer;font-size:21px}
+#stills .stills-arrow:disabled{opacity:.28;cursor:default}
+#stills .stills-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;padding:0 0 10px}
+#stills .stills-track::-webkit-scrollbar{display:none}
+#stills .still-card{flex:0 0 calc((100% - 48px)/3.35);min-width:0;scroll-snap-align:start}
+#stills .still-placeholder{aspect-ratio:4/5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;border:1px solid rgba(199,149,100,.23);background:radial-gradient(ellipse at 80% 18%,rgba(188,128,79,.17),transparent 53%),linear-gradient(145deg,#201b19,#121113 58%,#24201d);position:relative;overflow:hidden}
+#stills .still-placeholder:after{content:'';position:absolute;inset:13px;border:1px solid rgba(239,227,211,.08);pointer-events:none}
+#stills .still-mark{font:400 clamp(30px,4vw,60px) 'Playfair Display',serif;color:rgba(231,204,170,.27)}
+#stills .still-placeholder-label{font:11px Arial,sans-serif;letter-spacing:.19em;color:#b5a493}
+#stills .still-meta{font:11px Arial,sans-serif;letter-spacing:.13em;color:#aa9a88;margin-top:13px}
+#stills .stills-hint{font:12px Arial,sans-serif;color:#948a81;margin-top:12px}
+@media(max-width:900px){#stills .still-card{flex-basis:calc((100% - 24px)/2.3)}}
+@media(max-width:600px){#stills .still-card{flex-basis:78%}#stills .stills-toolbar{align-items:flex-start}#stills .stills-filters{gap:7px}#stills .stills-filter{font-size:11px;padding:9px 11px}}
 </style>
 </head>
 <body>
@@ -809,8 +830,8 @@ body{
 <section class="hero new-hero" id="top"><div class="hero-placeholder" aria-label="Место для будущего фонового видео"><span class="placeholder-label">ЗДЕСЬ БУДЕТ ВИДЕО</span></div><div class="container hero-content"><div class="hero-kicker">AI CREATOR / VISUAL DIRECTOR</div><h1>МЕДИАКОНТЕНТ<br>ДЛЯ БРЕНДОВ<br>ЧЕРЕЗ <span class="accent">AI</span></h1><div class="typing-line"><span id="typingText" aria-label="Направления: рекламные ролики, имиджевые видео, продуктовая реклама, анимация, AI-визуал">Рекламные ролики</span><span class="typing-cursor" aria-hidden="true">|</span></div><div class="hero-actions"><a class="main-btn" href="#contact">ОБСУДИТЬ ПРОЕКТ ↗</a><a class="ghost-btn" href="#portfolio">СМОТРЕТЬ РАБОТЫ ↓</a></div></div><div class="hero-bottom">LERCHIKART © 2026 <span>SCROLL TO EXPLORE ↓</span></div></section>
 <section class="section" id="portfolio">
     <div class="container">
-      <div class="section-tag">02 / SELECTED WORKS</div>
-      <h2 class="section-title display-heading">РАБОТЫ, КОТОРЫЕ ГОВОРЯТ САМИ ЗА СЕБЯ.</h2>
+      <div class="section-tag">02 / MOTION WORKS</div>
+      <h2 class="section-title display-heading">ВИДЕОПРОЕКТЫ.</h2>
       <div class="portfolio-intro">
         Реклама, музыкальные клипы и анимация. Наведи курсор для предпросмотра, нажми для просмотра со звуком.
       </div>
@@ -894,17 +915,26 @@ body{
 
   
 
-<section class="section content-section" id="services"><div class="container"><div class="section-tag">03 / EXPERTISE</div><h2 class="section-title display-heading">ОТ ИДЕИ ДО ФИНАЛЬНОГО КАДРА.</h2><div class="expertise-showcase"><article class="expertise-tile wide"><div class="expertise-media" aria-hidden="true"><span class="expertise-media-label">VIDEO PREVIEW / 01</span></div><div class="expertise-copy"><span class="expertise-number">01 /</span><h3>РЕКЛАМНЫЕ РОЛИКИ</h3><p>Видеореклама продуктов и брендов для digital-площадок, социальных сетей и рекламных кампаний.</p></div></article>
+<section class="section content-section" id="stills"><div class="container"><div class="section-tag">03 / STILL WORKS</div><h2 class="section-title display-heading">AI-ВИЗУАЛЫ.</h2><p class="stills-lead">Продуктовые сцены, fashion, beauty и концептуальные изображения. Коллекция скоро пополнится новыми работами.</p><div class="stills-toolbar"><div class="stills-filters" role="group" aria-label="Категории AI-изображений"><button class="stills-filter active" data-still-filter="all" aria-pressed="true">Все работы</button><button class="stills-filter" data-still-filter="product" aria-pressed="false">Продуктовый визуал</button><button class="stills-filter" data-still-filter="fashion" aria-pressed="false">Fashion &amp; Beauty</button><button class="stills-filter" data-still-filter="editorial" aria-pressed="false">Креатив / Editorial</button></div><div class="stills-arrows"><button class="stills-arrow" type="button" data-still-prev aria-label="Предыдущие изображения">←</button><button class="stills-arrow" type="button" data-still-next aria-label="Следующие изображения">→</button></div></div><div class="stills-track" tabindex="0" aria-label="Горизонтальная галерея AI-изображений"><article class="still-card" data-still-category="product"><div class="still-placeholder" aria-label="Место для будущей фотоработы 1"><span class="still-mark">01</span><span class="still-placeholder-label">IMAGE COMING SOON</span></div><div class="still-meta">ПРОДУКТОВЫЙ ВИЗУАЛ</div></article>
+<article class="still-card" data-still-category="fashion"><div class="still-placeholder" aria-label="Место для будущей фотоработы 2"><span class="still-mark">02</span><span class="still-placeholder-label">IMAGE COMING SOON</span></div><div class="still-meta">FASHION & BEAUTY</div></article>
+<article class="still-card" data-still-category="editorial"><div class="still-placeholder" aria-label="Место для будущей фотоработы 3"><span class="still-mark">03</span><span class="still-placeholder-label">IMAGE COMING SOON</span></div><div class="still-meta">КРЕАТИВ / EDITORIAL</div></article>
+<article class="still-card" data-still-category="product"><div class="still-placeholder" aria-label="Место для будущей фотоработы 4"><span class="still-mark">04</span><span class="still-placeholder-label">IMAGE COMING SOON</span></div><div class="still-meta">ПРОДУКТОВЫЙ ВИЗУАЛ</div></article>
+<article class="still-card" data-still-category="fashion"><div class="still-placeholder" aria-label="Место для будущей фотоработы 5"><span class="still-mark">05</span><span class="still-placeholder-label">IMAGE COMING SOON</span></div><div class="still-meta">FASHION & BEAUTY</div></article>
+<article class="still-card" data-still-category="editorial"><div class="still-placeholder" aria-label="Место для будущей фотоработы 6"><span class="still-mark">06</span><span class="still-placeholder-label">IMAGE COMING SOON</span></div><div class="still-meta">КРЕАТИВ / EDITORIAL</div></article>
+<article class="still-card" data-still-category="product"><div class="still-placeholder" aria-label="Место для будущей фотоработы 7"><span class="still-mark">07</span><span class="still-placeholder-label">IMAGE COMING SOON</span></div><div class="still-meta">ПРОДУКТОВЫЙ ВИЗУАЛ</div></article>
+<article class="still-card" data-still-category="fashion"><div class="still-placeholder" aria-label="Место для будущей фотоработы 8"><span class="still-mark">08</span><span class="still-placeholder-label">IMAGE COMING SOON</span></div><div class="still-meta">FASHION & BEAUTY</div></article>
+<article class="still-card" data-still-category="editorial"><div class="still-placeholder" aria-label="Место для будущей фотоработы 9"><span class="still-mark">09</span><span class="still-placeholder-label">IMAGE COMING SOON</span></div><div class="still-meta">КРЕАТИВ / EDITORIAL</div></article></div><div class="stills-hint">Листайте галерею стрелками или свайпом →</div></div></section>
+<section class="section content-section" id="services"><div class="container"><div class="section-tag">04 / EXPERTISE</div><h2 class="section-title display-heading">ОТ ИДЕИ ДО ФИНАЛЬНОГО КАДРА.</h2><div class="expertise-showcase"><article class="expertise-tile wide"><div class="expertise-media" aria-hidden="true"><span class="expertise-media-label">VIDEO PREVIEW / 01</span></div><div class="expertise-copy"><span class="expertise-number">01 /</span><h3>РЕКЛАМНЫЕ РОЛИКИ</h3><p>Видеореклама продуктов и брендов для digital-площадок, социальных сетей и рекламных кампаний.</p></div></article>
 <article class="expertise-tile "><div class="expertise-media" aria-hidden="true"><span class="expertise-media-label">VIDEO PREVIEW / 02</span></div><div class="expertise-copy"><span class="expertise-number">02 /</span><h3>ИМИДЖЕВЫЕ ФИЛЬМЫ</h3><p>Атмосферные визуальные истории, раскрывающие характер, эстетику и ценности бренда.</p></div></article>
 <article class="expertise-tile "><div class="expertise-media" aria-hidden="true"><span class="expertise-media-label">VIDEO PREVIEW / 03</span></div><div class="expertise-copy"><span class="expertise-number">03 /</span><h3>ПРОДУКТОВЫЙ AI-ВИЗУАЛ</h3><p>Предметные сцены, fashion и beauty-контент с вниманием к материалам, свету и деталям.</p></div></article>
 <article class="expertise-tile wide"><div class="expertise-media" aria-hidden="true"><span class="expertise-media-label">VIDEO PREVIEW / 04</span></div><div class="expertise-copy"><span class="expertise-number">04 /</span><h3>КЛИПЫ И АНИМАЦИЯ</h3><p>Музыкальные видео, стилизованная анимация и экспериментальные визуальные форматы.</p></div></article></div></div></section>
-<section class="section content-section" id="approach"><div class="container"><div class="section-tag">04 / THE APPROACH</div><h2 class="section-title display-heading">ИДЕЯ ВАЖНЕЕ ИНСТРУМЕНТА.</h2><p class="approach-lead">AI расширяет возможности визуального производства: от реалистичных рекламных сцен до миров, существующих только в воображении. Для меня это инструмент воплощения идеи, а не замена творческому процессу.</p><div class="approach-principles">
+<section class="section content-section" id="approach"><div class="container"><div class="section-tag">05 / THE APPROACH</div><h2 class="section-title display-heading">ИДЕЯ ВАЖНЕЕ ИНСТРУМЕНТА.</h2><p class="approach-lead">AI расширяет возможности визуального производства: от реалистичных рекламных сцен до миров, существующих только в воображении. Для меня это инструмент воплощения идеи, а не замена творческому процессу.</p><div class="approach-principles">
 <div class="approach-principle"><span class="approach-index">01 /</span><h3>РЕЖИССЁРСКИЙ ПОДХОД</h3><p>Каждый проект начинается с идеи. Я продумываю композицию, последовательность кадров, настроение и визуальный язык.</p></div>
 <div class="approach-principle"><span class="approach-index">02 /</span><h3>ВНИМАНИЕ К ДЕТАЛЯМ</h3><p>Реалистичная фактура, свет, движение и точность передачи продукта — всё работает на целостность изображения.</p></div>
 <div class="approach-principle"><span class="approach-index">03 /</span><h3>СВОБОДА РЕАЛИЗАЦИИ</h3><p>Создаю сцены и визуальные концепции, для которых традиционная съёмка потребовала бы сложных декораций, локаций и производства.</p></div>
 <div class="approach-principle"><span class="approach-index">04 /</span><h3>ГОТОВЫЙ РЕЗУЛЬТАТ</h3><p>От сценария и разработки кадров до генерации, монтажа, звука и финального видео.</p></div>
 </div></div></section>
-<section class="section content-section" id="workflow"><div class="container"><div class="section-tag">05 / WORKFLOW</div><h2 class="section-title display-heading">КАК ИДЕЯ СТАНОВИТСЯ ФИЛЬМОМ.</h2><div class="workflow-steps">
+<section class="section content-section" id="workflow"><div class="container"><div class="section-tag">06 / WORKFLOW</div><h2 class="section-title display-heading">КАК ИДЕЯ СТАНОВИТСЯ ФИЛЬМОМ.</h2><div class="workflow-steps">
 <div class="workflow-step"><span class="workflow-number">01</span><div class="workflow-detail"><h3>БРИФ И ЗНАКОМСТВО</h3><p>Обсуждаем задачу, продукт, аудиторию, желаемую эстетику и формат видео.</p></div><span class="workflow-arrow" aria-hidden="true">↗</span></div>
 <div class="workflow-step"><span class="workflow-number">02</span><div class="workflow-detail"><h3>КОНЦЕПЦИЯ И СЦЕНАРИЙ</h3><p>Разрабатываю идею, визуальное направление и последовательность сцен.</p></div><span class="workflow-arrow" aria-hidden="true">↗</span></div>
 <div class="workflow-step"><span class="workflow-number">03</span><div class="workflow-detail"><h3>AI-ПРОДАКШЕН</h3><p>Создаю и дорабатываю кадры, контролирую стилистику, движение и детали.</p></div><span class="workflow-arrow" aria-hidden="true">↗</span></div>
@@ -912,7 +942,7 @@ body{
 </div></div></section>
 
 <section class="section content-section" id="pricing"><div class="container">
-<div class="section-tag">06 / PRICING</div>
+<div class="section-tag">07 / PRICING</div>
 <h2 class="section-title display-heading">СТОИМОСТЬ ПРОИЗВОДСТВА.</h2>
 <p class="pricing-intro">От отдельного рекламного ролика до регулярного визуального контента для бренда. Выберите подходящий формат — детали и итоговый бюджет обсудим под вашу задачу.</p>
 <div class="pricing-grid">
@@ -931,7 +961,7 @@ body{
 </div>
 <p class="pricing-note">Указана стартовая стоимость. Итоговый бюджет зависит от сложности, количества сцен, требований к деталям и объёма правок. Сложный липсинк, дополнительные версии, клипы и нестандартные проекты рассчитываются индивидуально.</p>
 </div></section>
-<section class="section content-section" id="about"><div class="container"><div class="section-tag">07 / THE CREATOR</div><div class="creator-grid"><div class="creator-copy"><h2 class="section-title display-heading">ЗА КАДРОМ — LERCHIKART.</h2><p>Меня зовут Валерия. Я AI-креатор и визуальный автор, работаю под творческим именем LERCHIKART.</p><p>Мой путь в визуальном искусстве начался с фотографии. Шесть лет работы с камерой научили меня видеть свет, композицию, эмоции и детали, из которых складывается сильный кадр.</p><p>Сегодня я переношу этот опыт в AI-продакшен — создаю рекламные фильмы, визуальные концепции и истории, в которых технологии становятся инструментом для воплощения идей.</p><p>Для меня важно не просто создать красивую картинку, а сделать визуал, у которого есть характер.</p></div><div class="creator-portrait"><img src="%D0%93%D0%BB%D0%B0%D0%BC%D1%83%D1%80%D0%BD%D0%B0%D1%8F%20%D0%B3%D0%B5%D1%80%D0%BE%D0%B8%D0%BD%D1%8F%20%D1%81%20%D0%B7%D0%BE%D0%BB%D0%BE%D1%82%D1%8B%D0%BC%20%D1%84%D0%B0%D0%BD%D1%82%D0%B0%D0%B7%D0%B8%D0%B9%D0%BD%D1%8B%D0%BC%20%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC.png" alt="LERCHIKART — авторский портрет с Ноксом" loading="lazy" decoding="async"></div></div></div></section>
+<section class="section content-section" id="about"><div class="container"><div class="section-tag">08 / THE CREATOR</div><div class="creator-grid"><div class="creator-copy"><h2 class="section-title display-heading">ЗА КАДРОМ — LERCHIKART.</h2><p>Меня зовут Валерия. Я AI-креатор и визуальный автор, работаю под творческим именем LERCHIKART.</p><p>Мой путь в визуальном искусстве начался с фотографии. Шесть лет работы с камерой научили меня видеть свет, композицию, эмоции и детали, из которых складывается сильный кадр.</p><p>Сегодня я переношу этот опыт в AI-продакшен — создаю рекламные фильмы, визуальные концепции и истории, в которых технологии становятся инструментом для воплощения идей.</p><p>Для меня важно не просто создать красивую картинку, а сделать визуал, у которого есть характер.</p></div><div class="creator-portrait"><img src="%D0%93%D0%BB%D0%B0%D0%BC%D1%83%D1%80%D0%BD%D0%B0%D1%8F%20%D0%B3%D0%B5%D1%80%D0%BE%D0%B8%D0%BD%D1%8F%20%D1%81%20%D0%B7%D0%BE%D0%BB%D0%BE%D1%82%D1%8B%D0%BC%20%D1%84%D0%B0%D0%BD%D1%82%D0%B0%D0%B7%D0%B8%D0%B9%D0%BD%D1%8B%D0%BC%20%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC.png" alt="LERCHIKART — авторский портрет с Ноксом" loading="lazy" decoding="async"></div></div></div></section>
 
 <section class="section" id="contact" style="padding-bottom: 54px;">
     <div class="container">
@@ -1016,6 +1046,9 @@ body{
 
 <script>
 (()=>{const el=document.getElementById('typingText');if(!el)return;const phrases=['Рекламные ролики','Имиджевые видео','Продуктовая реклама','Анимация','AI-визуал'];if(matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=phrases.join(' / ');return;}let i=0,n=phrases[0].length,back=true;function tick(){const word=phrases[i];el.textContent=word.slice(0,n);if(back){if(n>0){n--;setTimeout(tick,40);}else{back=false;i=(i+1)%phrases.length;setTimeout(tick,300);}}else{const next=phrases[i];if(n<next.length){n++;setTimeout(tick,75);}else{back=true;setTimeout(tick,1700);}}}setTimeout(tick,1800);})();
+</script>
+<script>
+(()=>{const root=document.getElementById('stills');if(!root)return;const track=root.querySelector('.stills-track'),cards=[...root.querySelectorAll('.still-card')],buttons=[...root.querySelectorAll('[data-still-filter]')],prev=root.querySelector('[data-still-prev]'),next=root.querySelector('[data-still-next]');function update(){prev.disabled=track.scrollLeft<5;next.disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-5;}buttons.forEach(btn=>btn.addEventListener('click',()=>{const category=btn.dataset.stillFilter;buttons.forEach(b=>{const active=b===btn;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});cards.forEach(card=>card.hidden=category!=='all'&&card.dataset.stillCategory!==category);track.scrollLeft=0;requestAnimationFrame(update);}));function step(dir){const visible=cards.find(c=>!c.hidden);if(!visible)return;track.scrollBy({left:dir*(visible.getBoundingClientRect().width+16),behavior:'smooth'});}prev.addEventListener('click',()=>step(-1));next.addEventListener('click',()=>step(1));track.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update);update();})();
 </script>
 </body>
 </html>
