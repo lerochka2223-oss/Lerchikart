@@ -850,7 +850,7 @@ radial-gradient(ellipse 72vw 34vh at var(--glow-x2,25%) var(--glow-y2,72%),rgba(
 @media(max-width:760px){.new-hero .hero-bg-video{object-position:56% center}.new-hero .hero-video-bg::after{background:linear-gradient(90deg,rgba(0,0,0,.65),rgba(0,0,0,.4)),rgba(0,0,0,.16)}}
 
 /* Temporary Nox scroll-motion prototype */
-#nox-scroll-test{position:fixed;left:0;top:0;width:clamp(135px,17vw,260px);aspect-ratio:16/9;z-index:35;pointer-events:none;opacity:0;transform:translate3d(-300px,-300px,0);transition:opacity .35s ease;mix-blend-mode:screen;overflow:hidden}
+#nox-scroll-test{position:fixed;left:0;top:0;width:clamp(135px,17vw,260px);aspect-ratio:16/9;z-index:35;pointer-events:none;opacity:0;transform:translate3d(-300px,-300px,0);transition:opacity .35s ease;mix-blend-mode:normal;overflow:hidden}
 #nox-scroll-test video{width:100%;height:100%;object-fit:contain;display:block}
 @media(max-width:760px){#nox-scroll-test{width:145px}}
 @media(prefers-reduced-motion:reduce){#nox-scroll-test{display:none}}
@@ -1088,7 +1088,7 @@ radial-gradient(ellipse 72vw 34vh at var(--glow-x2,25%) var(--glow-y2,72%),rgba(
 <script>
 (()=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;let ticking=false;function drift(){ticking=false;const max=Math.max(1,document.documentElement.scrollHeight-innerHeight),p=Math.min(1,Math.max(0,scrollY/max)),t=p*Math.PI*2;const vars={'--glow-x':(62+23*Math.sin(t*1.6+.5))+'%','--glow-y':(41+23*Math.cos(t*1.1))+'%','--glow-x2':(30+23*Math.cos(t*1.35+.8))+'%','--glow-y2':(64+22*Math.sin(t*1.4+1.1))+'%','--glow-x3':(77+14*Math.sin(t*1.8+2))+'%','--glow-y3':(76+15*Math.cos(t*1.2+1))+'%'};for(const [key,val] of Object.entries(vars))document.body.style.setProperty(key,val)}addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(drift)}},{passive:true});addEventListener('resize',drift);drift()})();
 </script>
-<div id="nox-scroll-test" aria-hidden="true"><video autoplay muted loop playsinline preload="auto"><source src="nox-test.mp4" type="video/mp4"></video></div>
+<div id="nox-scroll-test" aria-hidden="true"><video autoplay muted loop playsinline preload="auto"><source src="nox-alpha-site.webm" type="video/webm"></video></div>
 <script>
 (()=>{const el=document.getElementById('nox-scroll-test');if(!el||matchMedia('(prefers-reduced-motion: reduce)').matches)return;let x=-300,y=-300,tx=-300,ty=-300,visible=false;function tick(){const max=Math.max(1,document.documentElement.scrollHeight-innerHeight),p=Math.max(0,Math.min(1,scrollY/max));const active=scrollY>innerHeight*.75&&scrollY<max-innerHeight*.25;el.style.opacity=active?'1':'0';const w=innerWidth,h=innerHeight;tx=w*(.1+.72*(.5+.5*Math.sin(p*12.5)));ty=h*(.25+.53*(.5+.5*Math.cos(p*10.5)));if(!visible&&active){x=tx;y=ty}visible=active;x+=(tx-x)*.11;y+=(ty-y)*.11;el.style.transform='translate3d('+Math.round(x)+'px,'+Math.round(y)+'px,0)';requestAnimationFrame(tick)}requestAnimationFrame(tick)})();
 </script>
