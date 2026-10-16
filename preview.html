@@ -852,7 +852,7 @@ radial-gradient(ellipse 72vw 34vh at var(--glow-x2,25%) var(--glow-y2,72%),rgba(
 /* Nox: continuously running behind the text in the screenshot section */
 #approach{isolation:isolate;overflow:hidden}
 #approach>.container{position:relative;z-index:2}
-#nox-scroll-test{position:absolute;left:0;top:8%;width:clamp(390px,43vw,740px);aspect-ratio:16/9;z-index:0;pointer-events:none;opacity:1;overflow:visible;will-change:transform;animation:nox-run-across 11s linear infinite}
+#nox-scroll-test{position:absolute;left:0;top:8%;width:clamp(390px,43vw,740px);aspect-ratio:16/9;z-index:0;pointer-events:none;opacity:1;overflow:visible;will-change:transform;animation:nox-run-across 4.8s linear infinite}
 @keyframes nox-run-across{from{transform:translateX(-100%)}to{transform:translateX(calc(100vw + 100%))}}
 #nox-scroll-test video{width:100%;height:100%;object-fit:contain;display:block}
 @media(max-width:760px){#nox-scroll-test{width:min(95vw,500px)}}
@@ -1099,14 +1099,14 @@ radial-gradient(ellipse 72vw 34vh at var(--glow-x2,25%) var(--glow-y2,72%),rgba(
  const video=el&&el.querySelector('video');
  if(!section||!video)return;
  if(matchMedia('(prefers-reduced-motion: reduce)').matches){video.pause();el.style.animationPlayState='paused';return}
- const passSeconds=11;
+ const passSeconds=4.8;
  let active=false;
  video.loop=false;
  video.pause();
  function syncSpeed(){
   if(Number.isFinite(video.duration)&&video.duration>0){
    // Finish the source footage just before the character exits the viewport.
-   video.playbackRate=Math.max(.25,Math.min(4,(video.duration-.09)/passSeconds));
+   video.playbackRate=1;
   }
  }
  video.addEventListener('loadedmetadata',syncSpeed);
