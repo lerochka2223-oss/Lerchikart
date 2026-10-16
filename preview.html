@@ -831,6 +831,17 @@ body>*{position:relative;z-index:1}
 .site-header{z-index:50}
 @media(max-width:760px){body::before{background:radial-gradient(ellipse 85vw 40vh at var(--glow-x,70%) var(--glow-y,40%),rgba(181,113,68,.19),transparent 78%)}}
 @media(prefers-reduced-motion:reduce){body::before{background:radial-gradient(ellipse 55vw 50vh at 75% 45%,rgba(181,113,68,.15),transparent 78%)}}
+
+/* Floating, softly blended bronze/graphite atmosphere */
+body::before{inset:-10vh -10vw;background:
+radial-gradient(ellipse 32vw 43vh at var(--glow-x,72%) var(--glow-y,40%),rgba(135,100,75,.20),transparent 76%),
+radial-gradient(ellipse 34vw 38vh at var(--glow-x2,25%) var(--glow-y2,72%),rgba(96,77,67,.17),transparent 78%),
+radial-gradient(ellipse 26vw 34vh at var(--glow-x3,83%) var(--glow-y3,84%),rgba(173,119,75,.105),transparent 80%);
+filter:blur(44px);opacity:.9;will-change:transform}
+@media(max-width:760px){body::before{background:
+radial-gradient(ellipse 85vw 36vh at var(--glow-x,70%) var(--glow-y,40%),rgba(135,100,75,.19),transparent 78%),
+radial-gradient(ellipse 72vw 34vh at var(--glow-x2,25%) var(--glow-y2,72%),rgba(96,77,67,.15),transparent 80%);filter:blur(28px)}}
+@media(prefers-reduced-motion:reduce){body::before{background:radial-gradient(ellipse 55vw 48vh at 70% 45%,rgba(135,100,75,.16),transparent 80%);filter:blur(35px)}}
 </style>
 </head>
 <body>
@@ -1061,6 +1072,9 @@ body>*{position:relative;z-index:1}
 </script>
 <script>
 (()=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;let pending=false;function moveGlow(){pending=false;const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);const progress=Math.min(1,Math.max(0,scrollY/max));const x=52+28*Math.sin(progress*Math.PI*3.2+0.8);const y=35+22*Math.cos(progress*Math.PI*4.1);document.body.style.setProperty('--glow-x',x.toFixed(1)+'%');document.body.style.setProperty('--glow-y',y.toFixed(1)+'%');}addEventListener('scroll',()=>{if(!pending){pending=true;requestAnimationFrame(moveGlow)}},{passive:true});addEventListener('resize',moveGlow);moveGlow()})();
+</script>
+<script>
+(()=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;let ticking=false;function drift(){ticking=false;const max=Math.max(1,document.documentElement.scrollHeight-innerHeight),p=Math.min(1,Math.max(0,scrollY/max)),t=p*Math.PI*2;const vars={'--glow-x':(62+23*Math.sin(t*1.6+.5))+'%','--glow-y':(41+23*Math.cos(t*1.1))+'%','--glow-x2':(30+23*Math.cos(t*1.35+.8))+'%','--glow-y2':(64+22*Math.sin(t*1.4+1.1))+'%','--glow-x3':(77+14*Math.sin(t*1.8+2))+'%','--glow-y3':(76+15*Math.cos(t*1.2+1))+'%'};for(const [key,val] of Object.entries(vars))document.body.style.setProperty(key,val)}addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(drift)}},{passive:true});addEventListener('resize',drift);drift()})();
 </script>
 </body>
 </html>
